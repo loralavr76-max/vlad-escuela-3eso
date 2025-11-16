@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <title>Geografia 3.1 · U2 Reptes demogràfics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg-main: #05030b;
+      --bg-card: #141129;
+      --bg-card-soft: #181335;
+      --accent: #a855ff;
+      --accent-soft: #4b2b88;
+      --accent-strong: #d946ef;
+      --text-main: #f9fafb;
+      --text-muted: #a1a1b5;
+      --danger: #f97373;
+      --success: #22c55e;
+      --border-subtle: #2c2546;
+      --chip-bg: #1f163f;
+      --chip-bg-ru: #31254f;
+      --shadow-soft: 0 18px 45px rgba(0,0,0,0.7);
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --transition-fast: 0.18s ease-out;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-main);
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at top left, #3b0764 0, #020617 45%, #000 100%);
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      padding: 18px;
+      overflow-x: hidden;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 1200px;
+      background: radial-gradient(circle at top, #1e1637 0, #05030b 60%);
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 2.3fr) minmax(280px, 0.9fr);
+      gap: 0;
+      overflow: hidden;
+      border: 1px solid rgba(168,85,255,0.35);
+    }
+
+    @media (max-width: 900px) {
+      body {
+        padding: 8px;
+      }
+      .app {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* LEFT PANEL */
+
+    .left {
+      padding: 18px 20px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .book-title {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+    }
+
+    .unit-title {
+      font-size: 20px;
+      font-weight: 650;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .unit-pill {
+      font-size: 11px;
+      padding: 2px 9px;
+      border-radius: var(--radius-pill);
+      background: rgba(30,64,175,0.45);
+      border: 1px solid rgba(129,140,248,0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .mode-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(135deg, #4b2b88, #7e22ce);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #fff;
+      border: 1px solid rgba(248,250,252,0.15);
+    }
+
+    .mode-pill span.icon {
+      font-size: 15px;
+    }
+
+    .controls-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .search {
+      flex: 1 1 180px;
+      position: relative;
+    }
+
+    .search input {
+      width: 100%;
+      padding: 8px 30px 8px 30px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-subtle);
+      background: rgba(15,23,42,0.85);
+      color: var(--text-main);
+      font-size: 13px;
+      outline: none;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .search input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .search input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(168,85,255,0.5);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    .translation-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .toggle-switch {
+      width: 38px;
+      height: 20px;
+      border-radius: 999px;
+      background: #111827;
+      border: 1px solid var(--border-subtle);
+      padding: 2px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      transition: background var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .toggle-knob {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      transition: transform var(--transition-fast), background var(--transition-fast);
+    }
+
+    #toggleTranslation:checked + .toggle-switch {
+      background: linear-gradient(120deg, #a855ff, #ec4899);
+      border-color: transparent;
+    }
+
+    #toggleTranslation:checked + .toggle-switch .toggle-knob {
+      transform: translateX(16px);
+      background: #f9fafb;
+    }
+
+    #toggleTranslation {
+      display: none;
+    }
+
+    .tabs {
+      display: inline-flex;
+      margin-top: 4px;
+      background: rgba(15,23,42,0.8);
+      border-radius: var(--radius-pill);
+      padding: 3px;
+      border: 1px solid var(--border-subtle);
+      gap: 4px;
+    }
+
+    .tab-btn {
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      padding: 4px 11px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .tab-btn span.icon {
+      font-size: 13px;
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, #a855ff, #ec4899);
+      color: #f9fafb;
+      transform: translateY(-1px);
+    }
+
+    .tab-btn:not(.active):hover {
+      background: rgba(148,163,184,0.12);
+      color: #e5e7eb;
+    }
+
+    .content {
+      margin-top: 10px;
+      padding-right: 8px;
+      overflow-y: auto;
+      max-height: calc(100vh - 150px);
+      scrollbar-width: thin;
+      scrollbar-color: #4c1d95 transparent;
+    }
+
+    .content::-webkit-scrollbar {
+      width: 6px;
+    }
+    .content::-webkit-scrollbar-thumb {
+      background: #4c1d95;
+      border-radius: 999px;
+    }
+
+    .section-card {
+      background: radial-gradient(circle at top left, #221a40 0, #0b0718 55%);
+      border-radius: var(--radius-lg);
+      padding: 14px 14px 12px 14px;
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 10px;
+      box-shadow: 0 7px 20px rgba(0,0,0,0.55);
+      position: relative;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(129,140,248,0.5);
+      color: #c4b5fd;
+      background: rgba(30,64,175,0.3);
+      white-space: nowrap;
+    }
+
+    .section-body {
+      font-size: 13px;
+      color: #e5e7eb;
+      line-height: 1.45;
+    }
+
+    .ru-text {
+      display: none;
+      margin-top: 4px;
+      color: #f9fafb;
+      font-style: italic;
+    }
+
+    body.show-ru .ru-text {
+      display: block;
+    }
+
+    .vocab-row {
+      margin-top: 7px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      font-size: 11px;
+      border-radius: var(--radius-pill);
+      background: var(--chip-bg);
+      color: #e5e7eb;
+      border: 1px solid rgba(148,163,184,0.25);
+    }
+
+    .chip .ru-text-inline {
+      display: none;
+      opacity: 0.9;
+    }
+
+    body.show-ru .chip .ru-text-inline {
+      display: inline;
+    }
+
+    /* QUIZ */
+
+    .hidden {
+      display: none;
+    }
+
+    .quiz-card {
+      background: radial-gradient(circle at top, #261748 0, #070417 55%);
+      border-radius: var(--radius-lg);
+      padding: 12px 13px 11px 13px;
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 10px;
+      box-shadow: 0 6px 17px rgba(0,0,0,0.6);
+      position: relative;
+    }
+
+    .quiz-card.correct {
+      border-color: rgba(34,197,94,0.8);
+    }
+    .quiz-card.incorrect {
+      border-color: rgba(248,113,113,0.8);
+    }
+
+    .quiz-q-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 2px;
+    }
+
+    .quiz-question {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .quiz-btn {
+      width: 100%;
+      text-align: left;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.3);
+      padding: 7px 11px;
+      font-size: 13px;
+      background: rgba(15,23,42,0.85);
+      color: #e5e7eb;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .quiz-btn span.bullet {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      background: rgba(15,23,42,0.9);
+    }
+
+    .quiz-btn:hover {
+      border-color: rgba(168,85,255,0.9);
+      background: radial-gradient(circle at left, #3b0764 0, #020617 70%);
+      box-shadow: 0 0 0 1px rgba(168,85,255,0.5);
+      transform: translateY(-1px);
+    }
+
+    .quiz-card.correct .quiz-btn.correct-option {
+      border-color: rgba(34,197,94,0.9);
+      background: radial-gradient(circle at left, #14532d 0, #022c22 70%);
+    }
+
+    .quiz-card.incorrect .quiz-btn.correct-option {
+      border-color: rgba(34,197,94,0.9);
+      background: radial-gradient(circle at left, #14532d 0, #022c22 70%);
+    }
+
+    .quiz-card.incorrect .quiz-btn.selected-wrong {
+      border-color: rgba(248,113,113,0.9);
+      background: radial-gradient(circle at left, #7f1d1d 0, #111827 70%);
+    }
+
+    .quiz-feedback {
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* VOCAB TRAINER */
+
+    .trainer-card {
+      background: radial-gradient(circle at top, #1f2937 0, #020617 75%);
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+      margin-bottom: 10px;
+    }
+
+    .trainer-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .trainer-term {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .trainer-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .trainer-options {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .trainer-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.35);
+      padding: 7px 11px;
+      background: rgba(15,23,42,0.9);
+      color: #e5e7eb;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .trainer-btn span.left {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .trainer-btn:hover {
+      background: radial-gradient(circle at left, #3b0764 0, #020617 70%);
+      border-color: rgba(168,85,255,0.8);
+      box-shadow: 0 0 0 1px rgba(168,85,255,0.5);
+      transform: translateY(-1px);
+    }
+
+    .trainer-btn.correct {
+      border-color: rgba(34,197,94,0.9);
+      background: radial-gradient(circle at left, #14532d 0, #022c22 70%);
+    }
+
+    .trainer-btn.wrong {
+      border-color: rgba(248,113,113,0.9);
+      background: radial-gradient(circle at left, #7f1d1d 0, #111827 70%);
+    }
+
+    .trainer-feedback {
+      font-size: 12px;
+      min-height: 16px;
+      color: var(--text-muted);
+    }
+
+    .trainer-actions {
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary {
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148,163,184,0.4);
+      padding: 6px 12px;
+      background: rgba(15,23,42,0.95);
+      color: #e5e7eb;
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .btn-secondary:hover {
+      background: radial-gradient(circle at left, #4c1d95 0, #020617 70%);
+      border-color: rgba(168,85,255,0.8);
+      box-shadow: 0 0 0 1px rgba(168,85,255,0.45);
+      transform: translateY(-1px);
+    }
+
+    /* RIGHT SIDEBAR */
+
+    .right {
+      background: radial-gradient(circle at top right, #1e1b4b 0, #020617 70%);
+      border-left: 1px solid rgba(72,61,139,0.8);
+      padding: 16px 16px 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .sidebar-box {
+      background: rgba(15,23,42,0.88);
+      border-radius: 18px;
+      padding: 10px 12px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.7);
+    }
+
+    .sidebar-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .sidebar-title span.icon {
+      font-size: 16px;
+    }
+
+    .progress-bar-outer {
+      width: 100%;
+      height: 9px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.95);
+      border: 1px solid rgba(51,65,85,0.9);
+      overflow: hidden;
+    }
+
+    .progress-bar-inner {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #22c55e, #a3e635, #facc15);
+      transition: width 0.25s ease-out;
+    }
+
+    .progress-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      margin-top: 4px;
+      color: var(--text-muted);
+    }
+
+    .progress-line strong {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+      margin-top: 6px;
+    }
+
+    .stat-pill {
+      background: rgba(15,23,42,0.95);
+      border-radius: 14px;
+      padding: 6px 7px;
+      border: 1px solid rgba(51,65,85,0.9);
+      font-size: 11px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 10px;
+    }
+
+    .stat-value {
+      font-weight: 600;
+      color: #e5e7eb;
+      font-size: 13px;
+    }
+
+    .mini-progress {
+      margin-top: 3px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- LEFT -->
+    <div class="left">
+      <div class="header">
+        <div class="title-block">
+          <div class="book-title">Geografia 3.1 · ESO · Comunitat Valenciana</div>
+          <div class="unit-title">
+            U2 · Reptes demogràfics
+            <span class="unit-pill">Moviments de població</span>
+          </div>
+        </div>
+        <div class="mode-pill">
+          <span class="icon">👨‍👩‍👦</span>
+          Modo families · Study
+        </div>
+      </div>
+
+      <div class="controls-row">
+        <div class="search">
+          <span class="search-icon">🔍</span>
+          <input id="searchInput" type="text" placeholder="Buscar en el text / Поиск по теме…" />
+        </div>
+
+        <label class="translation-toggle">
+          <input type="checkbox" id="toggleTranslation">
+          <span class="toggle-switch"><span class="toggle-knob"></span></span>
+          <span>Показать перевод (RU)</span>
+        </label>
+      </div>
+
+      <div class="controls-row" style="margin-top:2px;">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="theory">
+            <span class="icon">📘</span> Теория
+          </button>
+          <button class="tab-btn" data-tab="quiz">
+            <span class="icon">📝</span> Тесты
+          </button>
+          <button class="tab-btn" data-tab="vocab">
+            <span class="icon">🧠</span> Словарь
+          </button>
+        </div>
+      </div>
+
+      <div class="content">
+        <!-- THEORY -->
+        <div id="tab-theory">
+          <div id="sectionsContainer"></div>
+        </div>
+
+        <!-- QUIZ -->
+        <div id="tab-quiz" class="hidden">
+          <div id="quizContainer"></div>
+        </div>
+
+        <!-- VOCAB TRAINER -->
+        <div id="tab-vocab" class="hidden">
+          <div id="trainerContainer"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right">
+      <div class="sidebar-box">
+        <div class="sidebar-title">
+          <span><span class="icon">🏆</span> Прогресс по теме</span>
+          <span id="statusPercent" style="font-weight:600;">0%</span>
+        </div>
+        <div class="progress-bar-outer">
+          <div id="progressBar" class="progress-bar-inner"></div>
+        </div>
+        <div class="progress-line">
+          <span>Отвечено: <strong><span id="statusSolved">0</span> / <span id="statusTotal">0</span></strong></span>
+          <span>Верных: <strong id="statsCorrect">0</strong></span>
+        </div>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="sidebar-title">
+          <span><span class="icon">📊</span> Детали прогресса</span>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-pill">
+            <div class="stat-label">Всего ответов</div>
+            <div class="stat-value" id="statsAnswered">0</div>
+          </div>
+          <div class="stat-pill">
+            <div class="stat-label">Слов тренировано</div>
+            <div class="stat-value" id="statsVocab">0</div>
+          </div>
+        </div>
+        <div class="mini-progress" id="statsMini">
+          Начните с любого вопроса или слова — прогресс сохранится автоматически.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ---------- DATA ----------
+    const unitU2 = {
+      id: "u2",
+      title: "Reptes demogràfics. Els moviments de població",
+      introText:
+        "Estudiarem la dinàmica de la població mundial, els models demogràfics i les migracions, amb un focus especial en Espanya i en els Objectius de Desenvolupament Sostenible.",
+      sections: [
+        {
+          id: "modes-demografics",
+          title: "Models demogràfics",
+          badge: "2.4 · Què són els models demogràfics?",
+          textVa:
+            "La teoria de la transició demogràfica explica l'evolució de la població segons canvis en la natalitat i la mortalitat. Passem d'un règim demogràfic antic, amb natalitat i mortalitat molt altes, a un règim modern, amb taxes molt més baixes.",
+          textRu:
+            "Теория демографического перехода объясняет развитие населения через изменения рождаемости и смертности. Общество переходит от старого демографического режима с высокой рождаемостью и смертностью к современному, где оба показателя значительно ниже.",
+          vocab: [
+            { termVa: "Règim demogràfic antic", termRu: "Старый демографический режим" },
+            { termVa: "Transició demogràfica", termRu: "Демографический переход" },
+            { termVa: "Règim demogràfic modern", termRu: "Современный демографический режим" }
+          ]
+        },
+        {
+          id: "tendencies-actuals",
+          title: "Tendències demogràfiques actuals",
+          badge: "2.5 · Tendències actuals",
+          textVa:
+            "Actualment, la taxa de creixement de la població mundial disminueix, però el creixement continua sent positiu. La població es distribueix de manera desigual entre regions més desenvolupades i menys desenvolupades.",
+          textRu:
+            "Сейчас темпы роста населения мира снижаются, но прирост всё ещё положительный. Население распределено неравномерно между более развитыми и менее развитыми регионами.",
+          vocab: [
+            { termVa: "Taxa de creixement", termRu: "Темп роста" },
+            { termVa: "Regions desenvolupades", termRu: "Развитые регионы" },
+            { termVa: "Regions menys desenvolupades", termRu: "Менее развитые регионы" }
+          ]
+        },
+        {
+          id: "causes-migracions",
+          title: "Per què es produeixen les migracions?",
+          badge: "2.6 · Causes de les migracions",
+          textVa:
+            "Els moviments migratoris poden tenir causes econòmiques i demogràfiques (cerca de feina), polítiques i religioses (conflictes o persecucions), socials i culturals, o ambientals (catàstrofes naturals, sequeres, canvi climàtic).",
+          textRu:
+            "Миграционные движения могут иметь экономические и демографические причины (поиск работы), политические и религиозные (конфликты, преследования), социальные и культурные, а также природные причины (стихийные бедствия, засухи, изменение климата).",
+          vocab: [
+            { termVa: "Causes econòmiques", termRu: "Экономические причины" },
+            { termVa: "Causes ambientals", termRu: "Природно-экологические причины" }
+          ]
+        },
+        {
+          id: "conseq-migracions",
+          title: "Conseqüències de les migracions",
+          badge: "2.7 · Conseqüències",
+          textVa:
+            "Les migracions tenen efectes per al migrant (accés a oportunitats però també dificultats d'adaptació), per al país d'origen (pèrdua de població jove) i per al país de destí (rejuvinen la població i poden augmentar la diversitat cultural).",
+          textRu:
+            "Миграции влияют на самого мигранта (новые возможности и сложность адаптации), на страну происхождения (потеря молодых трудоспособных людей) и на страну назначения (омоложение населения, рост культурного разнообразия).",
+          vocab: [
+            { termVa: "Rejoveniment", termRu: "Омоложение населения" },
+            { termVa: "Diversitat cultural", termRu: "Культурное разнообразие" }
+          ]
+        },
+        {
+          id: "espanya-immigracio",
+          title: "Espanya, destí d'immigrants",
+          badge: "2.9 · Espanya destí d'immigrants",
+          textVa:
+            "Espanya s'ha convertit en un dels principals destins d'immigrants gràcies a la seua situació geogràfica, l'economia, el clima i el seu paper dins la Unió Europea. La immigració ha contribuït a rejovenir la població i a augmentar la natalitat.",
+          textRu:
+            "Испания стала одной из основных стран назначения мигрантов благодаря своему географическому положению, экономике, климату и роли в Европейском Союзе. Иммиграция способствует омоложению населения и увеличению рождаемости.",
+          vocab: [
+            { termVa: "Destí d'immigrants", termRu: "Страна назначения мигрантов" },
+            { termVa: "Població estrangera", termRu: "Иностранное население" }
+          ]
+        },
+        {
+          id: "espanya-buida",
+          title: "Els reptes demogràfics d'Espanya",
+          badge: "2.10 · Espanya buida",
+          textVa:
+            "L'anomenada 'Espanya buida' fa referència a municipis amb una densitat de població molt baixa i problemes de despoblament rural. Hi influeixen la baixa natalitat, l'envelliment i la falta d'oportunitats al medi rural.",
+          textRu:
+            "Так называемая «пустеющая Испания» — это муниципалитеты с очень низкой плотностью населения и проблемой обезлюдения сельских районов. На это влияют низкая рождаемость, старение и нехватка возможностей в сельской местности.",
+          vocab: [
+            { termVa: "Espanya buida", termRu: "Пустеющая Испания" },
+            { termVa: "Despoblament", termRu: "Обезлюдение" }
+          ]
+        },
+        {
+          id: "ods-migracio",
+          title: "Migració i Objectius de Desenvolupament Sostenible",
+          badge: "2.11 · Migració i ODS",
+          textVa:
+            "La migració es relaciona amb diversos Objectius de Desenvolupament Sostenible, com l'ODS 8 (feina digna), l'ODS 10 (reducció de les desigualtats) i l'ODS 16 (pau i justícia). Una gestió ordenada i segura de les migracions pot contribuir a un desenvolupament més just.",
+          textRu:
+            "Миграция связана с несколькими Целями устойчивого развития: ЦУР 8 (достойная работа), ЦУР 10 (сокращение неравенства), ЦУР 16 (мир и справедливость). Организованное и безопасное управление миграцией помогает более справедливому развитию.",
+          vocab: [
+            { termVa: "ODS 10", termRu: "ЦУР 10: сокращение неравенства" },
+            { termVa: "Migració segura", termRu: "Безопасная миграция" }
+          ]
+        }
+      ],
+      quiz: [
+        {
+          id: 1,
+          type: "mcq",
+          question:
+            "Què és la densitat de població? / Что такое плотность населения?",
+          options: [
+            "El nombre total d'habitants d'un país / Общее количество жителей страны",
+            "El nombre d'habitants per km² / Количество жителей на 1 км²",
+            "El creixement natural d'un territori / Естественный прирост населения территории"
+          ],
+          correctIndex: 1,
+          explanation:
+            "La densitat de població es calcula dividint la població total entre la superfície del territori. / Плотность населения рассчитывается как отношение общего числа жителей к площади территории."
+        },
+        {
+          id: 2,
+          type: "mcq",
+          question:
+            "El creixement natural de la població és… / Что такое естественный прирост населения?",
+          options: [
+            "Naixements – defuncions / Рождений минус смертей",
+            "Immigració – emigració / Иммиграция минус эмиграция",
+            "Població total / superfície / Население, делённое на площадь"
+          ],
+          correctIndex: 0,
+          explanation:
+            "El creixement natural s'obté restant les defuncions als naixements. / Естественный прирост — это разница между количеством рождений и смертей."
+        },
+        {
+          id: 3,
+          type: "tf",
+          question:
+            "L'emigració és l'arribada de persones a un país. / Эмиграция — это приезд людей в страну.",
+          correct: false,
+          explanation:
+            "Emigrar és eixir d'un territori; entrar-hi s'anomena immigrar. / Эмиграция — выезд людей из страны, въезд называется иммиграцией."
+        },
+        {
+          id: 4,
+          type: "mcq",
+          question:
+            "En una piràmide de població d'un país envellit, la forma típica és… / Как выглядит пирамида населения в стареющей стране?",
+          options: [
+            "Base ampla i part superior estreta / Широкое основание и узкая вершина",
+            "Base estreta i part superior ampla / Узкое основание и широкая верхняя часть",
+            "Perfectament rectangular / Почти прямоугольная форма"
+          ],
+          correctIndex: 1,
+          explanation:
+            "Quan hi ha poques persones joves i moltes de majors, la base és estreta i la part alta és ampla. / В стареющем обществе мало молодых и много пожилых, поэтому основание узкое, а верхняя часть шире."
+        },
+        {
+          id: 5,
+          type: "tf",
+          question:
+            "Les migracions poden ser voluntàries o forçades. / Миграции могут быть добровольными или вынужденными.",
+          correct: true,
+          explanation:
+            "Hi ha migracions per treball o estudi (voluntàries) i per guerres, persecucions o catàstrofes (forçades). / Есть миграции по работе или учёбе (добровольные) и из-за войн, преследований, катастроф (вынужденные)."
+        },
+        {
+          id: 6,
+          type: "mcq",
+          question:
+            "En un règim demogràfic antic, com són la natalitat i la mortalitat? / Каковы рождаемость и смертность в старом демографическом режиме?",
+          options: [
+            "Baixes totes dues / И рождаемость, и смертность низкие",
+            "Alta natalitat i alta mortalitat / Высокая рождаемость и высокая смертность",
+            "Baixa natalitat i alta mortalitat / Низкая рождаемость и высокая смертность"
+          ],
+          correctIndex: 1,
+          explanation:
+            "En el règim demogràfic antic tant la natalitat com la mortalitat són elevades. / В старом демографическом режиме и рождаемость, и смертность высокие."
+        },
+        {
+          id: 7,
+          type: "mcq",
+          question:
+            "Quin factor NO és una causa directa de les migracions segons el llibre? / Какой фактор НЕ является прямой причиной миграций согласно учебнику?",
+          options: [
+            "Conflictes bèl·lics / Военные конфликты",
+            "Desigualtats econòmiques / Экономическое неравенство",
+            "Canvis d'estació de l'any / Смена времён года"
+          ],
+          correctIndex: 2,
+          explanation:
+            "Les migracions estan relacionades amb factors econòmics, polítics, socials o ambientals, però no simplement amb els canvis d'estació. / Миграции связаны с экономическими, политическими, социальными и природными факторами, но не с обычной сменой времён года."
+        },
+        {
+          id: 8,
+          type: "mcq",
+          question:
+            "Segons el llibre, Espanya s'ha convertit en un destí d'immigrants perquè… / Согласно учебнику, Испания стала страной назначения мигрантов, потому что…",
+          options: [
+            "Té una posició geogràfica atractiva i forma part de la UE / Имеет выгодное географическое положение и входит в ЕС",
+            "És un país poc connectat amb el món / Мало связан с остальным миром",
+            "Té un clima molt fred / Климат очень холодный"
+          ],
+          correctIndex: 0,
+          explanation:
+            "La situació geogràfica, l'economia i la pertinença a la UE fan d'Espanya un important país receptor. / Географическое положение, экономика и членство в ЕС делают Испанию важной страной-получателем мигрантов."
+        },
+        {
+          id: 9,
+          type: "tf",
+          question:
+            "La “Espanya buida” fa referència a zones amb una densitat de població molt alta. / Термин «пустеющая Испания» относится к районам с очень высокой плотностью населения.",
+          correct: false,
+          explanation:
+            "El concepte fa referència a municipis amb densitat molt baixa i problemes de despoblament. / Понятие «пустеющая Испания» обозначает территории с очень низкой плотностью населения и проблемой обезлюдения."
+        },
+        {
+          id: 10,
+          type: "mcq",
+          question:
+            "Quin indicador combina el creixement natural i el saldo migratori? / Какой показатель сочетает естественный прирост и миграционное сальдо?",
+          options: [
+            "Creixement real / Реальный прирост населения",
+            "Densitat de població / Плотность населения",
+            "Taxa de fecunditat / Коэффициент рождаемости"
+          ],
+          correctIndex: 0,
+          explanation:
+            "El creixement real = creixement natural + saldo migratori. / Реальный прирост = естественный прирост + миграционное сальдо."
+        },
+        {
+          id: 11,
+          type: "mcq",
+          question:
+            "Quin objectiu dels ODS està relacionat amb la reducció de les desigualtats? / Какой ЦУР связан с сокращением неравенства?",
+          options: [
+            "ODS 3: Salut i benestar / ЦУР 3: Здоровье и благополучие",
+            "ODS 10: Reducció de les desigualtats / ЦУР 10: Сокращение неравенства",
+            "ODS 14: Vida submarina / ЦУР 14: Сохранение морских экосистем"
+          ],
+          correctIndex: 1,
+          explanation:
+            "La migració es relaciona especialment amb l'ODS 10 sobre reducció de les desigualtats. / Миграция особенно связана с ЦУР 10 о сокращении неравенства."
+        },
+        {
+          id: 12,
+          type: "tf",
+          question:
+            "Segons el llibre, la immigració pot rejovenir la població d'un país receptor. / Согласно учебнику, иммиграция может омолаживать население принимающей страны.",
+          correct: true,
+          explanation:
+            "L'arribada de població jove adulta pot augmentar la natalitat i equilibrar l'estructura per edat. / Приезд молодых взрослых повышает рождаемость и делает возрастную структуру более сбалансированной."
+        }
+      ]
+    };
+
+    const vocabList = [];
+    unitU2.sections.forEach(sec => {
+      if (sec.vocab) sec.vocab.forEach(v => vocabList.push(v));
+    });
+
+    // ---------- STATE ----------
+    const STORAGE_KEY = "gh31_u2_stats_v3";
+
+    let stats = {
+      answered: 0,
+      correct: 0,
+      answers: {},
+      vocabDone: 0,
+      showRu: false
+    };
+
+    function loadStats() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      try {
+        const data = JSON.parse(raw);
+        stats = { ...stats, ...data };
+      } catch (e) {
+        console.warn("Cannot parse stats", e);
+      }
+    }
+
+    function saveStats() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(stats));
+    }
+
+    // ---------- RENDER THEORY ----------
+    const sectionsContainer = document.getElementById("sectionsContainer");
+
+    function renderSections(filterText = "") {
+      sectionsContainer.innerHTML = "";
+      const query = filterText.trim().toLowerCase();
+      unitU2.sections.forEach(sec => {
+        const allText = (sec.title + " " + sec.textVa + " " + sec.textRu).toLowerCase();
+        if (query && !allText.includes(query)) return;
+
+        const card = document.createElement("div");
+        card.className = "section-card";
+        card.innerHTML = `
+          <div class="section-header">
+            <div class="section-title">
+              <span>📍</span>
+              <span>${sec.title}</span>
+            </div>
+            <span class="badge">${sec.badge}</span>
+          </div>
+          <div class="section-body">
+            <p>${sec.textVa}</p>
+            <p class="ru-text">${sec.textRu}</p>
+            ${
+              sec.vocab && sec.vocab.length
+                ? `<div class="vocab-row">
+                    ${sec.vocab
+                      .map(
+                        v => `
+                      <span class="chip">
+                        <span>💡 ${v.termVa}</span>
+                        <span class="ru-text-inline"> · ${v.termRu}</span>
+                      </span>`
+                      )
+                      .join("")}
+                   </div>`
+                : ""
+            }
+          </div>
+        `;
+        sectionsContainer.appendChild(card);
+      });
+    }
+
+    // ---------- RENDER QUIZ ----------
+    const quizContainer = document.getElementById("quizContainer");
+
+    function renderQuiz() {
+      quizContainer.innerHTML = "";
+      unitU2.quiz.forEach(q => {
+        const card = document.createElement("div");
+        card.className = "quiz-card";
+        card.dataset.questionId = String(q.id);
+
+        let optionsHtml = "";
+        if (q.type === "mcq") {
+          optionsHtml = `
+            <div class="quiz-options">
+              ${q.options
+                .map(
+                  (opt, idx) => `
+                <button class="quiz-btn"
+                        onclick="handleAnswer(${q.id}, ${idx})"
+                        data-option-index="${idx}">
+                  <span class="bullet">${String.fromCharCode(65 + idx)}</span>
+                  <span>${opt}</span>
+                </button>`
+                )
+                .join("")}
+            </div>
+          `;
+        } else if (q.type === "tf") {
+          optionsHtml = `
+            <div class="quiz-options">
+              <button class="quiz-btn"
+                      onclick="handleAnswer(${q.id}, true)"
+                      data-option-index="true">
+                <span class="bullet">✔</span>
+                <span>Verdader / Верно</span>
+              </button>
+              <button class="quiz-btn"
+                      onclick="handleAnswer(${q.id}, false)"
+                      data-option-index="false">
+                <span class="bullet">✖</span>
+                <span>Fals / Неверно</span>
+              </button>
+            </div>
+          `;
+        }
+
+        card.innerHTML = `
+          <div class="quiz-q-label">Pregunta ${q.id}</div>
+          <div class="quiz-question">${q.question}</div>
+          ${optionsHtml}
+          <div class="quiz-feedback" id="feedback-q-${q.id}"></div>
+        `;
+        quizContainer.appendChild(card);
+      });
+    }
+
+    function handleAnswer(questionId, selected) {
+      const q = unitU2.quiz.find(x => x.id === questionId);
+      if (!q) return;
+
+      let isCorrect = false;
+      let correctIndex = null;
+
+      if (q.type === "mcq") {
+        correctIndex = q.correctIndex;
+        isCorrect = selected === q.correctIndex;
+      } else if (q.type === "tf") {
+        isCorrect = Boolean(selected) === Boolean(q.correct);
+      }
+
+      const card = document.querySelector(`.quiz-card[data-question-id="${questionId}"]`);
+      if (!card) return;
+
+      card.classList.remove("correct", "incorrect");
+
+      const btns = card.querySelectorAll(".quiz-btn");
+      btns.forEach(btn => {
+        btn.classList.remove("correct-option", "selected-wrong");
+      });
+
+      if (q.type === "mcq") {
+        btns.forEach(btn => {
+          const idx = Number(btn.dataset.optionIndex);
+          if (idx === correctIndex) {
+            btn.classList.add("correct-option");
+          }
+          if (idx === selected && idx !== correctIndex) {
+            btn.classList.add("selected-wrong");
+          }
+        });
+      } else {
+        btns.forEach(btn => {
+          const val = btn.dataset.optionIndex === "true";
+          if (val === q.correct) {
+            btn.classList.add("correct-option");
+          }
+          if (val === Boolean(selected) && val !== q.correct) {
+            btn.classList.add("selected-wrong");
+          }
+        });
+      }
+
+      card.classList.add(isCorrect ? "correct" : "incorrect");
+
+      const feedbackEl = document.getElementById(`feedback-q-${questionId}`);
+      feedbackEl.textContent = q.explanation;
+
+      const prev = stats.answers[questionId];
+      if (!prev) {
+        stats.answered += 1;
+        if (isCorrect) stats.correct += 1;
+      } else {
+        if (!prev.correct && isCorrect) stats.correct += 1;
+        if (prev.correct && !isCorrect) stats.correct -= 1;
+      }
+      stats.answers[questionId] = { correct: isCorrect };
+      updateProgress();
+      saveStats();
+    }
+
+    window.handleAnswer = handleAnswer; // make global for onclick
+
+    // ---------- VOCAB TRAINER ----------
+    const trainerContainer = document.getElementById("trainerContainer");
+    let currentVocab = null;
+    let currentOptions = [];
+    let currentCorrectIndex = null;
+
+    function renderTrainerLayout() {
+      trainerContainer.innerHTML = `
+        <div class="trainer-card">
+          <div class="trainer-label">Mini-trenador de vocabulari · Мини-тренажёр слов</div>
+          <div class="trainer-term" id="trainerTerm"></div>
+          <div class="trainer-sub" id="trainerSub"></div>
+          <div class="trainer-options" id="trainerOptions"></div>
+          <div class="trainer-feedback" id="trainerFeedback"></div>
+          <div class="trainer-actions">
+            <button class="btn-secondary" onclick="nextWord()">
+              <span>🎲 Следующее слово</span>
+            </button>
+            <div style="font-size:11px;color:var(--text-muted);">
+              Тренировано слов: <strong id="trainerCount">${stats.vocabDone}</strong>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function nextWord() {
+      if (!vocabList.length) return;
+      const randomIndex = Math.floor(Math.random() * vocabList.length);
+      currentVocab = vocabList[randomIndex];
+
+      const others = vocabList.filter(v => v !== currentVocab);
+      const shuffledOthers = others.sort(() => 0.5 - Math.random()).slice(0, 2);
+      currentOptions = [currentVocab, ...shuffledOthers].sort(() => 0.5 - Math.random());
+      currentCorrectIndex = currentOptions.findIndex(v => v === currentVocab);
+
+      const termEl = document.getElementById("trainerTerm");
+      const subEl = document.getElementById("trainerSub");
+      const optsEl = document.getElementById("trainerOptions");
+      const fbEl = document.getElementById("trainerFeedback");
+      if (!termEl || !optsEl) return;
+
+      termEl.textContent = currentVocab.termVa;
+      subEl.textContent = "Выберите правильный перевод на русском языке.";
+      fbEl.textContent = "";
+      optsEl.innerHTML = "";
+      currentOptions.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "trainer-btn";
+        btn.onclick = () => handleVocabAnswer(idx);
+        btn.innerHTML = `
+          <span class="left">
+            <span>🇷🇺</span>
+            <span>${opt.termRu}</span>
+          </span>
+          <span style="font-size:11px;color:var(--text-muted);">Выбрать</span>
+        `;
+        optsEl.appendChild(btn);
+      });
+    }
+
+    function handleVocabAnswer(index) {
+      const fbEl = document.getElementById("trainerFeedback");
+      const buttons = document.querySelectorAll("#trainerOptions .trainer-btn");
+      buttons.forEach(btn => btn.classList.remove("correct", "wrong"));
+
+      if (index === currentCorrectIndex) {
+        fbEl.textContent = "✅ Правильно! Запомни это слово.";
+        buttons[index].classList.add("correct");
+        stats.vocabDone += 1;
+        document.getElementById("trainerCount").textContent = stats.vocabDone;
+        updateProgress();
+        saveStats();
+      } else {
+        fbEl.textContent = "❌ Не совсем. Попробуй ещё раз или нажми «Следующее слово».";
+        buttons[index].classList.add("wrong");
+        if (currentCorrectIndex != null && buttons[currentCorrectIndex]) {
+          buttons[currentCorrectIndex].classList.add("correct");
+        }
+      }
+    }
+
+    window.nextWord = nextWord;
+    window.handleVocabAnswer = handleVocabAnswer;
+
+    // ---------- PROGRESS ----------
+    const statusPercentEl = document.getElementById("statusPercent");
+    const statusSolvedEl = document.getElementById("statusSolved");
+    const statusTotalEl = document.getElementById("statusTotal");
+    const progressBar = document.getElementById("progressBar");
+    const statsCorrectEl = document.getElementById("statsCorrect");
+    const statsAnsweredEl = document.getElementById("statsAnswered");
+    const statsVocabEl = document.getElementById("statsVocab");
+    const statsMiniEl = document.getElementById("statsMini");
+
+    function updateProgress() {
+      const total = unitU2.quiz.length;
+      const answered = stats.answered;
+      const correct = stats.correct;
+      const percent = total ? Math.round((answered / total) * 100) : 0;
+
+      statusTotalEl.textContent = total;
+      statusSolvedEl.textContent = answered;
+      statusPercentEl.textContent = percent + "%";
+      progressBar.style.width = percent + "%";
+
+      statsCorrectEl.textContent = correct;
+      statsAnsweredEl.textContent = answered;
+      statsVocabEl.textContent = stats.vocabDone;
+
+      if (!answered && !stats.vocabDone) {
+        statsMiniEl.textContent =
+          "Начните с одного вопроса теста или одного слова — и прогресс сразу сохранится.";
+      } else {
+        statsMiniEl.textContent =
+          "Молодец! Можно дорабатывать ошибки в тестах и повторять слова из словаря.";
+      }
+    }
+
+    // ---------- TABS, SEARCH, TRANSLATION ----------
+    function initTabs() {
+      const tabs = document.querySelectorAll(".tab-btn");
+      tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          tabs.forEach(t => t.classList.remove("active"));
+          tab.classList.add("active");
+
+          const tabName = tab.dataset.tab;
+          document.getElementById("tab-theory").classList.add("hidden");
+          document.getElementById("tab-quiz").classList.add("hidden");
+          document.getElementById("tab-vocab").classList.add("hidden");
+          document.getElementById(`tab-${tabName}`).classList.remove("hidden");
+        });
+      });
+    }
+
+    function initSearch() {
+      const input = document.getElementById("searchInput");
+      input.addEventListener("input", () => {
+        renderSections(input.value);
+      });
+    }
+
+    function initTranslationToggle() {
+      const checkbox = document.getElementById("toggleTranslation");
+      checkbox.checked = Boolean(stats.showRu);
+      document.body.classList.toggle("show-ru", checkbox.checked);
+      checkbox.addEventListener("change", () => {
+        const val = checkbox.checked;
+        document.body.classList.toggle("show-ru", val);
+        stats.showRu = val;
+        saveStats();
+      });
+    }
+
+    // ---------- INIT ----------
+    function initApp() {
+      loadStats();
+      renderSections();
+      renderQuiz();
+      renderTrainerLayout();
+      initTabs();
+      initSearch();
+      initTranslationToggle();
+      updateProgress();
+      if (vocabList.length) {
+        nextWord();
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", initApp);
+  </script>
+</body>
+</html>
