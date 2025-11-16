@@ -162,6 +162,9 @@
       background: rgba(15,23,42,0.7);
       color: #e0f2fe;
     }
+if (progressState.totalSeconds % 60 === 0) {
+  saveSessionToSupabase('session_update');
+}
 
     .nav-links {
       margin-top: 10px;
@@ -722,6 +725,8 @@
       font-size: 10px;
       color: #bfdbfe;
     }
+updateProgressUI();
+saveSessionToSupabase('test_answer');
 
     .btn {
       border-radius: 999px;
@@ -954,10 +959,37 @@
   </main>
 </div>
 
+<script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
   // ====== ДАННЫЕ ТЕМЫ ======
 
-  const topics = [
+  const topics = [// ИНИЦИАЛИЗАЦИЯ SUPABASE
+const SUPABASE_URL = 'https://peynomitdenvbdtlvnuz.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'; // ваш ключ anón
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+async function saveSessionToSupabase(eventType = 'test_answer') {
+  try {
+    const { error } = await sb
+      .from('study_logs')
+      .insert([{
+        subject: 'fisica',
+        grade: '3eso',
+        topic: 'tema7',
+        event_type: eventType,        // 'test_answer' | 'session_update' и т.п.
+        progress_percent: Math.round((progressState.done.length / tests.length) * 100),
+        total_seconds: progressState.totalSeconds || 0,
+        meta: {
+          testIndex: currentTestIndex,
+          date: new Date().toISOString()
+        }
+      }]);
+
+    if (error) console.error('Supabase error:', error);
+  } catch (e) {
+    console.error('Save to Supabase failed:', e);
+  }
+}
+
     {
       id: 'newton1',
       ref: '5.1 · Primera ley de Newton',
