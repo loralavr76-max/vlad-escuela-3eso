@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Español – Modificación de adjetivos</title>
+  <title>Español – Modificación de adjetivos y nombres (Tema 12)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
@@ -67,7 +68,8 @@
     .flex-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
+      margin-bottom: 4px;
     }
 
     .badge {
@@ -95,10 +97,10 @@
       margin-bottom: 4px;
     }
 
-    /* FLASHCARDS (слова для запоминания) */
+    /* FLASHCARDS */
     .flashcards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 10px;
       margin-top: 10px;
     }
@@ -227,7 +229,6 @@
       color: var(--text-soft);
     }
 
-    /* ANSWERS (show / hide) */
     .answers {
       margin-top: 8px;
       padding: 8px 10px;
@@ -253,295 +254,409 @@
 <body>
   <div class="page">
     <header>
-      <h1>Modificación de adjetivos</h1>
-      <p>Muy, bastante, algo, poco, nada, bien, más, tan, de lo más…</p>
+      <h1>Modificación de adjetivos y nombres</h1>
+      <p>Tema 12 – todo/toda, muy, mucho, demasiado…</p>
     </header>
 
-    <!-- ТЕОРИЯ -->
+    <!-- TEORÍA -->
     <section class="card">
-      <h2>1. Intensificadores (усилители и ослабители)</h2>
+      <h2>1. Teoría básica</h2>
       <p class="exercise-intro">
-        С этими словами мы усиливаем или ослабляем прилагательное.
+        Aquí tienes un resumen muy corto de la página del libro, чтобы повторить перед упражнениями.
       </p>
 
-      <div class="flex-row">
-        <div class="badge"><span>muy</span> = очень (+ + +)</div>
-        <div class="badge"><span>bastante</span> = достаточно (+ +)</div>
-        <div class="badge"><span>algo</span> = немного, слегка (+)</div>
-        <div class="badge"><span>poco</span> = мало (–)</div>
-        <div class="badge"><span>nada</span> = совсем не (– –)</div>
-      </div>
-
+      <h3>a) <code>todo, toda</code> + adjetivo</h3>
+      <p>
+        Усиливает прилагательное и показывает состояние / результат:
+      </p>
       <ul class="examples">
-        <li>Ana es <b>muy</b> atractiva.</li>
-        <li>Teo es <b>algo</b> cabezón.</li>
-        <li>Santi es <b>poco</b> hablador.</li>
-        <li>Ernesto no es <b>nada</b> listo.</li>
+        <li>El paquete llegó <b>todo roto</b>.</li>
+        <li>Esa pluma está <b>toda rota</b>.</li>
+        <li>La carne estaba <b>toda quemada</b>.</li>
+        <li>Me pilló un chaparrón y llegué a la oficina <b>toda mojada</b>.</li>
       </ul>
 
-      <p style="margin-top:10px;">
-        Когда добавляется <b>de</b>, слово становится существительным:
-        <i>mucho de, algo de, nada de…</i>
-      </p>
+      <h3>b) <code>todo(a) + nombre</code></h3>
+      <p>Усиливает качество, обозначенное существительным:</p>
       <ul class="examples">
-        <li>Hay <b>mucho de bueno</b> en ese chico.</li>
-        <li>Juan tiene <b>poco de amable</b>.</li>
-        <li>Esta novela no tiene <b>nada de original</b>.</li>
+        <li>Tus hermanos son <b>todo corazón</b>.</li>
+        <li>Felipe es <b>todo huesos</b>.</li>
+      </ul>
+
+      <h3>c) <code>muy / mucho / demasiad(o/a)</code> + nombre</h3>
+      <ul class="examples">
+        <li>En esta empresa hay <b>mucho cotilla</b>. (= muchas personas cotillas)</li>
+        <li>En este centro hay <b>muchos alumnos inteligentes</b>. (no usamos <i>mucho</i> aquí)</li>
+        <li>¡Cuidado! Es <b>mucha moto</b> para ti.</li>
+        <li>Este reloj es <b>demasiado caro</b> para mí.</li>
       </ul>
     </section>
 
     <!-- FLASHCARDS -->
     <section class="card">
-      <h2>2. Запомни слова (кликни на карточку)</h2>
-      <p class="exercise-intro">
-        Нажимай на карточки: сверху — слово по-испански, снизу появляется перевод.
-      </p>
-
+      <h2>2. Карточки слов – нажми, чтобы увидеть перевод</h2>
       <div class="flashcards-grid">
         <div class="flashcard">
+          <span class="word">todo roto / toda rota</span>
+          <span class="translation">совсем сломанный / вся сломана</span>
+          <small>estado resultado</small>
+        </div>
+        <div class="flashcard">
+          <span class="word">todo mojado</span>
+          <span class="translation">весь мокрый, промокший</span>
+          <small>Me pilló la lluvia…</small>
+        </div>
+        <div class="flashcard">
+          <span class="word">todo corazón</span>
+          <span class="translation">сплошное сердце, очень добрый человек</span>
+          <small>Es todo corazón.</small>
+        </div>
+        <div class="flashcard">
+          <span class="word">todo nervios</span>
+          <span class="translation">сплошные нервы, очень нервный</span>
+        </div>
+        <div class="flashcard">
+          <span class="word">todo oídos</span>
+          <span class="translation">внимательно слушаю (букв. одни уши)</span>
+        </div>
+        <div class="flashcard">
           <span class="word">muy</span>
-          <span class="translation">очень</span>
-          <small>+++</small>
+          <span class="translation">очень (перед прилаг. и нареч.)</span>
+          <small>muy alto, muy simpático</small>
         </div>
         <div class="flashcard">
-          <span class="word">bastante</span>
-          <span class="translation">довольно, достаточно</span>
-          <small>++</small>
+          <span class="word">mucho / mucha</span>
+          <span class="translation">много (перед сущ.)</span>
+          <small>mucho frío, mucha gente</small>
         </div>
         <div class="flashcard">
-          <span class="word">algo</span>
-          <span class="translation">немного, слегка</span>
-          <small>+</small>
+          <span class="word">demasiado / demasiada</span>
+          <span class="translation">слишком, чересчур</span>
+          <small>demasiado grande</small>
         </div>
         <div class="flashcard">
-          <span class="word">poco</span>
-          <span class="translation">мало</span>
-          <small>–</small>
-        </div>
-        <div class="flashcard">
-          <span class="word">nada</span>
-          <span class="translation">совсем не</span>
-          <small>– –</small>
-        </div>
-        <div class="flashcard">
-          <span class="word">mucho de</span>
-          <span class="translation">много (чего-то)</span>
-          <small>Hay mucho de bueno…</small>
-        </div>
-        <div class="flashcard">
-          <span class="word">poco de</span>
-          <span class="translation">мало (чего-то)</span>
-          <small>Tiene poco de simpático.</small>
-        </div>
-        <div class="flashcard">
-          <span class="word">nada de</span>
-          <span class="translation">совсем нет (чего-то)</span>
-          <small>No hay nada de sincero.</small>
-        </div>
-        <div class="flashcard">
-          <span class="word">bien + adj.</span>
-          <span class="translation">очень (разг.)</span>
-          <small>Este café está bien caliente.</small>
-        </div>
-        <div class="flashcard">
-          <span class="word">más / tan</span>
-          <span class="translation">более / такой</span>
-          <small>Es más rápido, es tan alto…</small>
-        </div>
-        <div class="flashcard">
-          <span class="word">de lo más + adj.</span>
-          <span class="translation">очень, супер-</span>
-          <small>de lo más divertido</small>
+          <span class="word">mucha moto</span>
+          <span class="translation">слишком крутой мотоцикл для кого-то</span>
         </div>
       </div>
     </section>
 
-    <!-- EXERCISE 1 -->
+    <!-- EJERCICIO 12.1 -->
     <section class="card">
-      <h2>3. Ejercicio 11.1 – Completa con la forma correcta</h2>
+      <h2>3. Ejercicio 12.1 – todo / toda</h2>
       <p class="exercise-intro">
-        Выбери правильное слово: <b>muy, bastante, algo, poco, nada, mucho de, algo de, poco de, nada de</b>.
+        Vuelve a escribir las frases usando <b>todo / toda / todos / todas</b>.  
+        Elige la opción correcta en cada caso.
       </p>
 
-      <div class="exercise" id="ex1">
+      <div class="exercise" id="ex121">
         <div class="exercise-row">
           <span class="num">1.</span>
-          Sofía es muy humilde. Tiene
-          <select class="ex1-select" data-answer="poco de">
+          La carne estaba muy quemada. → La carne estaba
+          <select class="ex121-select" data-answer="toda">
             <option value="">— elige —</option>
-            <option value="muy">muy</option>
-            <option value="bastante">bastante</option>
-            <option value="algo">algo</option>
-            <option value="poco">poco</option>
-            <option value="nada">nada</option>
-            <option value="mucho de">mucho de</option>
-            <option value="algo de">algo de</option>
-            <option value="poco de">poco de</option>
-            <option value="nada de">nada de</option>
+            <option value="todo">todo</option>
+            <option value="toda">toda</option>
+            <option value="todos">todos</option>
+            <option value="todas">todas</option>
           </select>
-          orgullosa.
+          quemada.
           <span class="feedback"></span>
         </div>
 
         <div class="exercise-row">
           <span class="num">2.</span>
-          No logro resolverlos. Estos problemas son
-          <select class="ex1-select" data-answer="muy">
+          Los vecinos han bajado muy preocupados. → Los vecinos han bajado
+          <select class="ex121-select" data-answer="todos">
             <option value="">— elige —</option>
-            <option value="muy">muy</option>
-            <option value="bastante">bastante</option>
-            <option value="algo">algo</option>
-            <option value="poco">poco</option>
-            <option value="nada">nada</option>
+            <option value="todo">todo</option>
+            <option value="toda">toda</option>
+            <option value="todos">todos</option>
+            <option value="todas">todas</option>
           </select>
-          complicados.
+          preocupados.
           <span class="feedback"></span>
         </div>
 
         <div class="exercise-row">
           <span class="num">3.</span>
-          No te creo. No hay
-          <select class="ex1-select" data-answer="nada de">
+          Las niñas salieron del colegio muy contentas. → Las niñas salieron del colegio
+          <select class="ex121-select" data-answer="todas">
             <option value="">— elige —</option>
-            <option value="mucho de">mucho de</option>
-            <option value="algo de">algo de</option>
-            <option value="poco de">poco de</option>
-            <option value="nada de">nada de</option>
+            <option value="todo">todo</option>
+            <option value="toda">toda</option>
+            <option value="todos">todos</option>
+            <option value="todas">todas</option>
           </select>
-          sincero en tus palabras.
+          contentas.
           <span class="feedback"></span>
         </div>
 
         <div class="exercise-row">
           <span class="num">4.</span>
-          Marta es muy rutinaria. No es
-          <select class="ex1-select" data-answer="nada">
+          Los platos estaban muy sucios. → Los platos estaban
+          <select class="ex121-select" data-answer="todos">
             <option value="">— elige —</option>
-            <option value="muy">muy</option>
-            <option value="bastante">bastante</option>
-            <option value="algo">algo</option>
-            <option value="poco">poco</option>
-            <option value="nada">nada</option>
+            <option value="todo">todo</option>
+            <option value="toda">toda</option>
+            <option value="todos">todos</option>
+            <option value="todas">todas</option>
           </select>
-          creativa.
+          sucios.
           <span class="feedback"></span>
         </div>
 
         <div class="exercise-row">
           <span class="num">5.</span>
-          A mí no me cae bien Guillermo. Tiene
-          <select class="ex1-select" data-answer="poco de">
+          La piel se me ha quedado muy seca. → La piel se me ha quedado
+          <select class="ex121-select" data-answer="toda">
             <option value="">— elige —</option>
-            <option value="mucho de">mucho de</option>
-            <option value="algo de">algo de</option>
-            <option value="poco de">poco de</option>
-            <option value="nada de">nada de</option>
+            <option value="todo">todo</option>
+            <option value="toda">toda</option>
+            <option value="todos">todos</option>
+            <option value="todas">todas</option>
           </select>
-          simpático.
+          seca.
           <span class="feedback"></span>
         </div>
 
         <div class="exercise-row">
           <span class="num">6.</span>
-          No sé qué hacer. Estos zapatos son
-          <select class="ex1-select" data-answer="algo">
+          Me pilló la tormenta y llegué a casa muy empapada. → Llegué a casa
+          <select class="ex121-select" data-answer="toda">
             <option value="">— elige —</option>
-            <option value="muy">muy</option>
-            <option value="bastante">bastante</option>
-            <option value="algo">algo</option>
-            <option value="poco">poco</option>
-            <option value="nada">nada</option>
+            <option value="todo">todo</option>
+            <option value="toda">toda</option>
+            <option value="todos">todos</option>
+            <option value="todas">todas</option>
           </select>
-          divertidos.
+          empapada.
           <span class="feedback"></span>
         </div>
 
         <div class="exercise-row">
           <span class="num">7.</span>
-          Sonia nunca se enfrenta a sus padres. Hay
-          <select class="ex1-select" data-answer="mucho de">
+          Cuando perdieron se quedaron muy tristes. → Se quedaron
+          <select class="ex121-select" data-answer="todos">
             <option value="">— elige —</option>
-            <option value="mucho de">mucho de</option>
-            <option value="algo de">algo de</option>
-            <option value="poco de">poco de</option>
-            <option value="nada de">nada de</option>
+            <option value="todo">todo</option>
+            <option value="toda">toda</option>
+            <option value="todos">todos</option>
+            <option value="todas">todas</option>
           </select>
-          cobarde en su actitud.
+          tristes.
           <span class="feedback"></span>
         </div>
 
         <div class="exercise-row">
           <span class="num">8.</span>
-          No entiendo a Laura. Hay
-          <select class="ex1-select" data-answer="algo de">
+          Tenéis que dejar la mesa muy limpia. → Tenéis que dejar la mesa
+          <select class="ex121-select" data-answer="toda">
             <option value="">— elige —</option>
-            <option value="mucho de">mucho de</option>
-            <option value="algo de">algo de</option>
-            <option value="poco de">poco de</option>
-            <option value="nada de">nada de</option>
+            <option value="todo">todo</option>
+            <option value="toda">toda</option>
+            <option value="todos">todos</option>
+            <option value="todas">todas</option>
           </select>
-          primitivo en su comportamiento.
-          <span class="feedback"></span>
-        </div>
-
-        <div class="exercise-row">
-          <span class="num">9.</span>
-          No me gustan las ideas de Carlos. Son
-          <select class="ex1-select" data-answer="bastante">
-            <option value="">— elige —</option>
-            <option value="muy">muy</option>
-            <option value="bastante">bastante</option>
-            <option value="algo">algo</option>
-            <option value="poco">poco</option>
-            <option value="nada">nada</option>
-          </select>
-          pesimistas.
+          limpia.
           <span class="feedback"></span>
         </div>
       </div>
 
       <div class="controls">
-        <button onclick="checkExercise1()">Проверить</button>
-        <button class="secondary" onclick="showAnswers1()">Показать ответы</button>
-        <button class="secondary" onclick="resetExercise1()">Сброс</button>
-        <span class="score" id="ex1-score"></span>
+        <button onclick="check121()">Проверить</button>
+        <button class="secondary" onclick="show121()">Показать ответы</button>
+        <button class="secondary" onclick="reset121()">Сброс</button>
+        <span class="score" id="ex121-score"></span>
       </div>
     </section>
 
-    <!-- EXERCISE 2: de lo más -->
+    <!-- EJERCICIO 12.2 -->
     <section class="card">
-      <h2>4. Ejercicio 11.4 – de lo más</h2>
+      <h2>4. Ejercicio 12.2 – demasiado, mucho, muy, todo</h2>
       <p class="exercise-intro">
-        Перепиши фразы, используя <b>de lo más</b>. Нажми «Показать», чтобы увидеть образец.
+        Completa con <b>demasiado / demasiada / mucho / muy / todo</b> en la forma correcta.
       </p>
 
-      <div class="exercise">
-        <p><b>Ejemplo:</b> Sonia tiene unos amigos muy divertidos. → Sonia tiene unos amigos <b>de lo más divertidos</b>.</p>
-
-        <ol style="padding-left:20px;">
-          <li>Ese bar es muy cutre.</li>
-          <li>He visto una película muy violenta.</li>
-          <li>Sonia sale con un chico muy pijo.</li>
-          <li>Paco contó unos chistes muy desagradables.</li>
-          <li>Tengo que hacer una traducción muy complicada.</li>
-          <li>Luis lleva siempre unas chaquetas muy elegantes.</li>
-          <li>Jorge tiene unos modales muy bastos.</li>
-        </ol>
-
-        <button class="secondary" onclick="toggleAnswers2()">Показать / скрыть ответы</button>
-
-        <div class="answers" id="answers2">
-          <p><b>Posibles soluciones:</b></p>
-          <ul>
-            <li>Ese bar es <b>de lo más cutre</b>.</li>
-            <li>He visto una película <b>de lo más violenta</b>.</li>
-            <li>Sonia sale con un chico <b>de lo más pijo</b>.</li>
-            <li>Paco contó unos chistes <b>de lo más desagradables</b>.</li>
-            <li>Tengo que hacer una traducción <b>de lo más complicada</b>.</li>
-            <li>Luis lleva siempre unas chaquetas <b>de lo más elegantes</b>.</li>
-            <li>Jorge tiene unos modales <b>de lo más bastos</b>.</li>
-          </ul>
+      <div class="exercise" id="ex122">
+        <div class="exercise-row">
+          <span class="num">1.</span>
+          Alberto es muy frío. Es
+          <select class="ex122-select" data-answer="todo">
+            <option value="">— elige —</option>
+            <option value="todo">todo</option>
+            <option value="mucho">mucho</option>
+            <option value="muy">muy</option>
+            <option value="demasiado">demasiado</option>
+            <option value="demasiada">demasiada</option>
+          </select>
+          cabeza.
+          <span class="feedback"></span>
         </div>
+
+        <div class="exercise-row">
+          <span class="num">2.</span>
+          Blanca es muy friolera. Es
+          <select class="ex122-select" data-answer="demasiada">
+            <option value="">— elige —</option>
+            <option value="todo">todo</option>
+            <option value="mucho">mucho</option>
+            <option value="muy">muy</option>
+            <option value="demasiado">demasiado</option>
+            <option value="demasiada">demasiada</option>
+          </select>
+          mujer para Eduardo.
+          <span class="feedback"></span>
+        </div>
+
+        <div class="exercise-row">
+          <span class="num">3.</span>
+          ¡Menudo abrigo! Es
+          <select class="ex122-select" data-answer="demasiado">
+            <option value="">— elige —</option>
+            <option value="todo">todo</option>
+            <option value="mucho">mucho</option>
+            <option value="muy">muy</option>
+            <option value="demasiado">demasiado</option>
+            <option value="demasiada">demasiada</option>
+          </select>
+          abrigo para ti, Agustín. Tú no eres tan alto.
+          <span class="feedback"></span>
+        </div>
+
+        <div class="exercise-row">
+          <span class="num">4.</span>
+          Esa es
+          <select class="ex122-select" data-answer="demasiada">
+            <option value="">— elige —</option>
+            <option value="todo">todo</option>
+            <option value="mucho">mucho</option>
+            <option value="muy">muy</option>
+            <option value="demasiado">demasiado</option>
+            <option value="demasiada">demasiada</option>
+          </select>
+          bici para Juanito. Apenas llega a los pedales.
+          <span class="feedback"></span>
+        </div>
+
+        <div class="exercise-row">
+          <span class="num">5.</span>
+          Mis primos son todavía
+          <select class="ex122-select" data-answer="muy">
+            <option value="">— elige —</option>
+            <option value="todo">todo</option>
+            <option value="mucho">mucho</option>
+            <option value="muy">muy</option>
+            <option value="demasiado">demasiado</option>
+            <option value="demasiada">demasiada</option>
+          </select>
+          niñas para llegar a casa tan tarde.
+          <span class="feedback"></span>
+        </div>
+
+        <div class="exercise-row">
+          <span class="num">6.</span>
+          Ese abuelo es
+          <select class="ex122-select" data-answer="todo">
+            <option value="">— elige —</option>
+            <option value="todo">todo</option>
+            <option value="mucho">mucho</option>
+            <option value="muy">muy</option>
+            <option value="demasiado">demasiado</option>
+            <option value="demasiada">demasiada</option>
+          </select>
+          un caballero. Siempre cede el asiento en el metro.
+          <span class="feedback"></span>
+        </div>
+
+        <div class="exercise-row">
+          <span class="num">7.</span>
+          Eva está muy, muy nerviosa. Es
+          <select class="ex122-select" data-answer="todo">
+            <option value="">— elige —</option>
+            <option value="todo">todo</option>
+            <option value="mucho">mucho</option>
+            <option value="muy">muy</option>
+            <option value="demasiado">demasiado</option>
+            <option value="demasiada">demasiada</option>
+          </select>
+          nervios.
+          <span class="feedback"></span>
+        </div>
+
+        <div class="exercise-row">
+          <span class="num">8.</span>
+          Éramos
+          <select class="ex122-select" data-answer="todo">
+            <option value="">— elige —</option>
+            <option value="todo">todo</option>
+            <option value="mucho">mucho</option>
+            <option value="muy">muy</option>
+            <option value="demasiado">demasiado</option>
+            <option value="demasiada">demasiada</option>
+          </select>
+          oídos. No queríamos perdernos ni una palabra.
+          <span class="feedback"></span>
+        </div>
+
+        <div class="exercise-row">
+          <span class="num">9.</span>
+          Ese Rolex es
+          <select class="ex122-select" data-answer="demasiado">
+            <option value="">— elige —</option>
+            <option value="todo">todo</option>
+            <option value="mucho">mucho</option>
+            <option value="muy">muy</option>
+            <option value="demasiado">demasiado</option>
+            <option value="demasiada">demasiada</option>
+          </select>
+          reloj para llevarlo a la playa, Jorge.
+          <span class="feedback"></span>
+        </div>
+
+        <div class="exercise-row">
+          <span class="num">10.</span>
+          Aquel era
+          <select class="ex122-select" data-answer="demasiado">
+            <option value="">— elige —</option>
+            <option value="todo">todo</option>
+            <option value="mucho">mucho</option>
+            <option value="muy">muy</option>
+            <option value="demasiado">demasiado</option>
+            <option value="demasiada">demasiada</option>
+          </select>
+          chalé para nosotros dos. Tenía seis dormitorios.
+          <span class="feedback"></span>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button onclick="check122()">Проверить</button>
+        <button class="secondary" onclick="show122()">Показать ответы</button>
+        <button class="secondary" onclick="reset122()">Сброс</button>
+        <span class="score" id="ex122-score"></span>
+      </div>
+    </section>
+
+    <!-- EXTRA: ответы к 12.3–12.5 (без интерактива, просто подсказка) -->
+    <section class="card">
+      <h2>5. Extra – Respuestas modelo 12.3–12.5</h2>
+      <p class="exercise-intro">
+        Здесь можно просто свериться: как примерно должны звучать ответы из учебника.
+      </p>
+      <button class="secondary" onclick="toggleExtra()">Показать / скрыть</button>
+      <div class="answers" id="extraAnswers">
+        <p><b>12.3 (con mucho):</b></p>
+        <ul>
+          <li>En esta empresa hay <b>muchas personas vagas</b>.</li>
+          <li>En ese equipo hay <b>muchos jugadores torpes</b>.</li>
+          <li>En esta ciudad hay <b>muchos artistas interesantes</b>.</li>
+          <li>Cuidad que en este barrio hay <b>muchos ladrones</b>.</li>
+          <li>En este pueblo hay <b>muchas familias humildes</b>.</li>
+          <li>En este pueblo hay <b>muchas personas canallas</b>.</li>
+        </ul>
+        <p><b>12.4 и 12.5</b> Влад может сделать в тетради, а вы можете вместе придумать варианты; структура такая же,
+          как в примерах выше (todo, toda, muy, mucho, demasiado + nombre).</p>
       </div>
     </section>
   </div>
@@ -554,19 +669,19 @@
       });
     });
 
-    // EXERCISE 1 – CHECK
-    function checkExercise1() {
-      const selects = document.querySelectorAll(".ex1-select");
+    // EX 12.1
+    function check121() {
+      const selects = document.querySelectorAll(".ex121-select");
       let correct = 0;
       selects.forEach(sel => {
-        const answer = sel.dataset.answer;
+        const ans = sel.dataset.answer;
         const fb = sel.parentElement.querySelector(".feedback");
         fb.classList.remove("ok", "wrong");
         if (!sel.value) {
           fb.textContent = "";
           return;
         }
-        if (sel.value === answer) {
+        if (sel.value === ans) {
           fb.textContent = "✓";
           fb.classList.add("ok");
           correct++;
@@ -575,32 +690,72 @@
           fb.classList.add("wrong");
         }
       });
-      document.getElementById("ex1-score").textContent =
+      document.getElementById("ex121-score").textContent =
         "Правильных: " + correct + " / " + selects.length;
     }
 
-    function showAnswers1() {
-      const selects = document.querySelectorAll(".ex1-select");
-      selects.forEach(sel => {
-        sel.value = sel.dataset.answer;
-      });
-      checkExercise1();
+    function show121() {
+      const selects = document.querySelectorAll(".ex121-select");
+      selects.forEach(sel => { sel.value = sel.dataset.answer; });
+      check121();
     }
 
-    function resetExercise1() {
-      const selects = document.querySelectorAll(".ex1-select");
+    function reset121() {
+      const selects = document.querySelectorAll(".ex121-select");
       selects.forEach(sel => {
         sel.value = "";
         const fb = sel.parentElement.querySelector(".feedback");
         fb.textContent = "";
         fb.classList.remove("ok", "wrong");
       });
-      document.getElementById("ex1-score").textContent = "";
+      document.getElementById("ex121-score").textContent = "";
     }
 
-    // EXERCISE 2 – SHOW / HIDE ANSWERS
-    function toggleAnswers2() {
-      const box = document.getElementById("answers2");
+    // EX 12.2
+    function check122() {
+      const selects = document.querySelectorAll(".ex122-select");
+      let correct = 0;
+      selects.forEach(sel => {
+        const ans = sel.dataset.answer;
+        const fb = sel.parentElement.querySelector(".feedback");
+        fb.classList.remove("ok", "wrong");
+        if (!sel.value) {
+          fb.textContent = "";
+          return;
+        }
+        if (sel.value === ans) {
+          fb.textContent = "✓";
+          fb.classList.add("ok");
+          correct++;
+        } else {
+          fb.textContent = "✗";
+          fb.classList.add("wrong");
+        }
+      });
+      document.getElementById("ex122-score").textContent =
+        "Правильных: " + correct + " / " + selects.length;
+    }
+
+    function show122() {
+      const selects = document.querySelectorAll(".ex122-select");
+      selects.forEach(sel => { sel.value = sel.dataset.answer; });
+      check122();
+    }
+
+    function reset122() {
+      const selects = document.querySelectorAll(".ex122-select");
+      selects.forEach(sel => {
+        sel.value = "";
+        const fb = sel.parentElement.querySelector(".feedback");
+        fb.textContent = "";
+        fb.classList.remove("ok", "wrong");
+      });
+      document.getElementById("ex122-score").textContent = "";
+    }
+
+    // EXTRA
+    function toggleExtra() {
+      const box = document.getElementById("extraAnswers");
       box.style.display = box.style.display === "block" ? "none" : "block";
     }
   </script>
