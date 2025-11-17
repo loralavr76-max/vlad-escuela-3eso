@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Física – Tema 7: Ejercicios interactivos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #e9f5ff;
+      --card-bg: #ffffff;
+      --accent: #4a90e2;
+      --accent-soft: #b8d8f5;
+      --text-main: #1f3b4d;
+      --text-soft: #52738a;
+      --ok: #2e8b57;
+      --wrong: #c0392b;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text-main);
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: var(--accent);
+    }
+
+    header p {
+      margin: 8px 0 0;
+      color: var(--text-soft);
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 6px 16px rgba(74, 144, 226, 0.12);
+      border: 1px solid rgba(74, 144, 226, 0.15);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: var(--accent);
+    }
+
+    .card h3 {
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .examples {
+      margin-top: 6px;
+      padding-left: 18px;
+      color: var(--text-soft);
+    }
+
+    .examples li {
+      margin-bottom: 4px;
+    }
+
+    .formula {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--text-main);
+      font-weight: 600;
+      margin-right: 4px;
+    }
+
+    .exercise {
+      margin-top: 10px;
+    }
+
+    .exercise-row {
+      margin-bottom: 10px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      background: rgba(184, 216, 245, 0.3);
+    }
+
+    .exercise-row span.num {
+      font-weight: 600;
+      margin-right: 4px;
+      color: var(--accent);
+    }
+
+    select,
+    input[type="number"],
+    input[type="text"] {
+      border-radius: 999px;
+      border: 1px solid rgba(74, 144, 226, 0.4);
+      padding: 4px 8px;
+      font-size: 0.95rem;
+      outline: none;
+      background: #fff;
+      margin: 0 4px;
+    }
+
+    .feedback {
+      margin-left: 6px;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .feedback.ok {
+      color: var(--ok);
+    }
+
+    .feedback.wrong {
+      color: var(--wrong);
+    }
+
+    .controls {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 7px 16px;
+      font-size: 0.92rem;
+      cursor: pointer;
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(74, 144, 226, 0.4);
+      transition: background 0.1s ease, transform 0.1s ease;
+    }
+
+    button.secondary {
+      background: #ffffff;
+      color: var(--accent);
+      border: 1px solid rgba(74, 144, 226, 0.5);
+      box-shadow: none;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .score {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+    }
+
+    .answers {
+      margin-top: 8px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px dashed rgba(74, 144, 226, 0.5);
+      display: none;
+      font-size: 0.95rem;
+      color: var(--text-soft);
+    }
+
+    .answers b {
+      color: var(--text-main);
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>Física – Tema 7</h1>
+      <p>Ejercicios interactivos para repasar fuerzas, masa, peso y energía.</p>
+    </header>
+
+    <!-- TEORÍA RESUMEN -->
+    <section class="card">
+      <h2>1. Resumen rápido</h2>
+      <ul class="examples">
+        <li>La <b>fuerza</b> se mide en <b>newtons (N)</b>.</li>
+        <li><span class="formula">Peso = m · g</span> &nbsp; con g ≈ 9,8 m/s².</li>
+        <li><span class="formula">F = m · a</span> &nbsp; (segunda ley de Newton).</li>
+        <li>La <b>energía cinética</b>: <span class="formula">Ec = ½ · m · v²</span></li>
+      </ul>
+    </section>
+
+    <!-- EJERCICIO 1: elegir fórmula -->
+    <section class="card">
+      <h2>2. Ejercicio 1 – Elige la fórmula correcta</h2>
+      <p class="examples">
+        Para cada magnitud, elige la fórmula que la define.
+      </p>
+      <div class="exercise" id="exF1">
+        <div class="exercise-row">
+          <span class="num">1.</span>
+          Peso (P):
+          <select class="exF1-select" data-answer="P = m · g">
+            <option value="">— elige —</option>
+            <option value="F = m · a">F = m · a</option>
+            <option value="P = m · g">P = m · g</option>
+            <option value="Ec = ½ · m · v²">Ec = ½ · m · v²</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+        <div class="exercise-row">
+          <span class="num">2.</span>
+          Fuerza (F) con masa y aceleración:
+          <select class="exF1-select" data-answer="F = m · a">
+            <option value="">— elige —</option>
+            <option value="F = m · a">F = m · a</option>
+            <option value="P = m · g">P = m · g</option>
+            <option value="Ec = ½ · m · v²">Ec = ½ · m · v²</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+        <div class="exercise-row">
+          <span class="num">3.</span>
+          Energía cinética (Ec):
+          <select class="exF1-select" data-answer="Ec = ½ · m · v²">
+            <option value="">— elige —</option>
+            <option value="F = m · a">F = m · a</option>
+            <option value="P = m · g">P = m · g</option>
+            <option value="Ec = ½ · m · v²">Ec = ½ · m · v²</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+      </div>
+      <div class="controls">
+        <button onclick="checkF1()">Comprobar</button>
+        <button class="secondary" onclick="showF1()">Mostrar respuestas</button>
+        <button class="secondary" onclick="resetF1()">Reset</button>
+        <span class="score" id="scoreF1"></span>
+      </div>
+    </section>
+
+    <!-- EJERCICIO 2: cálculo peso -->
+    <section class="card">
+      <h2>3. Ejercicio 2 – Cálculo del peso</h2>
+      <p class="examples">
+        Usa <b>P = m · g</b> con g = 9,8 m/s². Escribe el resultado aproximado en newtons (N).
+      </p>
+      <div class="exercise" id="exF2">
+        <div class="exercise-row">
+          <span class="num">1.</span>
+          Un cuerpo de masa 10 kg tiene un peso de
+          <input type="number" class="exF2-input" data-answer="98" step="0.1" /> N (aprox.).
+          <span class="feedback"></span>
+        </div>
+        <div class="exercise-row">
+          <span class="num">2.</span>
+          Un cuerpo de masa 50 kg tiene un peso de
+          <input type="number" class="exF2-input" data-answer="490" step="0.1" /> N (aprox.).
+          <span class="feedback"></span>
+        </div>
+      </div>
+      <div class="controls">
+        <button onclick="checkF2()">Comprobar</button>
+        <button class="secondary" onclick="showF2()">Mostrar respuestas</button>
+        <button class="secondary" onclick="resetF2()">Reset</button>
+        <span class="score" id="scoreF2"></span>
+      </div>
+    </section>
+
+    <!-- EJERCICIO 3: verdadero/falso concepto -->
+    <section class="card">
+      <h2>4. Ejercicio 3 – Verdadero o falso</h2>
+      <p class="examples">
+        Elige si la frase es verdadera o falsa.
+      </p>
+      <div class="exercise" id="exF3">
+        <div class="exercise-row">
+          <span class="num">1.</span>
+          La masa de un cuerpo cambia si vamos a la Luna.
+          <select class="exF3-select" data-answer="Falso">
+            <option value="">— elige —</option>
+            <option value="Verdadero">Verdadero</option>
+            <option value="Falso">Falso</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+        <div class="exercise-row">
+          <span class="num">2.</span>
+          El peso de un cuerpo depende de la gravedad del lugar.
+          <select class="exF3-select" data-answer="Verdadero">
+            <option value="">— elige —</option>
+            <option value="Verdadero">Verdadero</option>
+            <option value="Falso">Falso</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+        <div class="exercise-row">
+          <span class="num">3.</span>
+          La unidad de la fuerza en el Sistema Internacional es el newton.
+          <select class="exF3-select" data-answer="Verdadero">
+            <option value="">— elige —</option>
+            <option value="Verdadero">Verdadero</option>
+            <option value="Falso">Falso</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+      </div>
+      <div class="controls">
+        <button onclick="checkF3()">Comprobar</button>
+        <button class="secondary" onclick="showF3()">Mostrar respuestas</button>
+        <button class="secondary" onclick="resetF3()">Reset</button>
+        <span class="score" id="scoreF3"></span>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // EX 1
+    function checkSelectGroup(selectorClass, scoreId) {
+      const selects = document.querySelectorAll("." + selectorClass);
+      let correct = 0;
+      selects.forEach(sel => {
+        const ans = sel.dataset.answer;
+        const fb = sel.parentElement.querySelector(".feedback");
+        fb.classList.remove("ok", "wrong");
+        if (!sel.value) {
+          fb.textContent = "";
+          return;
+        }
+        if (sel.value === ans) {
+          fb.textContent = "✓";
+          fb.classList.add("ok");
+          correct++;
+        } else {
+          fb.textContent = "✗";
+          fb.classList.add("wrong");
+        }
+      });
+      document.getElementById(scoreId).textContent =
+        "Correctas: " + correct + " / " + selects.length;
+    }
+
+    function resetSelectGroup(selectorClass, scoreId) {
+      const selects = document.querySelectorAll("." + selectorClass);
+      selects.forEach(sel => {
+        sel.value = "";
+        const fb = sel.parentElement.querySelector(".feedback");
+        fb.textContent = "";
+        fb.classList.remove("ok", "wrong");
+      });
+      document.getElementById(scoreId).textContent = "";
+    }
+
+    function showSelectAnswers(selectorClass, scoreId) {
+      const selects = document.querySelectorAll("." + selectorClass);
+      selects.forEach(sel => { sel.value = sel.dataset.answer; });
+      checkSelectGroup(selectorClass, scoreId);
+    }
+
+    function checkF1()  { checkSelectGroup("exF1-select", "scoreF1"); }
+    function resetF1()  { resetSelectGroup("exF1-select", "scoreF1"); }
+    function showF1()   { showSelectAnswers("exF1-select", "scoreF1"); }
+
+    function checkF3()  { checkSelectGroup("exF3-select", "scoreF3"); }
+    function resetF3()  { resetSelectGroup("exF3-select", "scoreF3"); }
+    function showF3()   { showSelectAnswers("exF3-select", "scoreF3"); }
+
+    // EX 2 (inputs)
+    function checkF2() {
+      const inputs = document.querySelectorAll(".exF2-input");
+      let correct = 0;
+      inputs.forEach(inp => {
+        const fb = inp.parentElement.querySelector(".feedback");
+        fb.classList.remove("ok", "wrong");
+        if (!inp.value) {
+          fb.textContent = "";
+          return;
+        }
+        const ans = parseFloat(inp.dataset.answer);
+        const val = parseFloat(inp.value);
+        if (Math.abs(val - ans) <= ans * 0.05) { // ±5%
+          fb.textContent = "✓";
+          fb.classList.add("ok");
+          correct++;
+        } else {
+          fb.textContent = "✗";
+          fb.classList.add("wrong");
+        }
+      });
+      document.getElementById("scoreF2").textContent =
+        "Correctas: " + correct + " / " + inputs.length;
+    }
+
+    function resetF2() {
+      const inputs = document.querySelectorAll(".exF2-input");
+      inputs.forEach(inp => {
+        inp.value = "";
+        const fb = inp.parentElement.querySelector(".feedback");
+        fb.textContent = "";
+        fb.classList.remove("ok", "wrong");
+      });
+      document.getElementById("scoreF2").textContent = "";
+    }
+
+    function showF2() {
+      const inputs = document.querySelectorAll(".exF2-input");
+      inputs.forEach(inp => { inp.value = inp.dataset.answer; });
+      checkF2();
+    }
+  </script>
+</body>
+</html>
