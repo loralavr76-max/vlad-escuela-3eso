@@ -2,1467 +2,428 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Física 3 ESO · Tema 7 – ¿Por qué se mueven los cuerpos?</title>
+  <title>Física – Tema 7: Ejercicios interactivos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <style>
     :root {
-      --primary: #295ee9;
-      --primary-soft: #e7efff;
-      --primary-dark: #16379c;
-      --accent: #00c2ff;
-      --danger: #ff4b6a;
-      --bg: #f3f6ff;
+      --bg: #e9f5ff;
       --card-bg: #ffffff;
-      --text-main: #0e1630;
-      --text-soft: #4a5678;
-      --radius-lg: 20px;
-      --radius-md: 14px;
-      --radius-pill: 999px;
-      --shadow-soft: 0 18px 40px rgba(10, 35, 120, 0.18);
-      --transition-fast: 0.18s ease-out;
-      --transition-med: 0.25s ease-out;
+      --accent: #4a90e2;
+      --accent-soft: #b8d8f5;
+      --text-main: #1f3b4d;
+      --text-soft: #52738a;
+      --ok: #2e8b57;
+      --wrong: #c0392b;
     }
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     body {
-      min-height: 100vh;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at 0% 0%, #8ed0ff 0, #f3f6ff 45%, #e5ebff 100%);
+      margin: 0;
+      background: var(--bg);
       color: var(--text-main);
-      display: flex;
-      justify-content: center;
-      padding: 16px;
     }
 
-    .app {
-      width: 100%;
-      max-width: 1200px;
-      min-height: 90vh;
-      background: linear-gradient(150deg, #0f172a 0%, #13214b 40%, #1f2937 100%);
-      border-radius: 26px;
-      box-shadow: var(--shadow-soft);
-      color: #e5edff;
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      overflow: hidden;
-      position: relative;
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
     }
 
-    /* ==== ЛЕВАЯ КОЛОНКА – НАВИГАЦИЯ ==== */
-
-    .sidebar {
-      background: radial-gradient(circle at top left, #295ee9 0%, #0f172a 55%);
-      padding: 22px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      border-right: 1px solid rgba(255, 255, 255, 0.06);
+    header {
+      text-align: center;
+      margin-bottom: 24px;
     }
 
-    .logo-block {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: var(--accent);
     }
 
-    .logo-circle {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: conic-gradient(from 220deg, #00c2ff, #7dd3fc, #38bdf8, #00c2ff);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #0b1120;
-      font-weight: 800;
-      font-size: 20px;
-      box-shadow: 0 0 0 3px rgba(15,23,42,0.4);
+    header p {
+      margin: 8px 0 0;
+      color: var(--text-soft);
     }
 
-    .logo-text-title {
-      font-size: 14px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #bfdbfe;
+    .card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 6px 16px rgba(74, 144, 226, 0.12);
+      border: 1px solid rgba(74, 144, 226, 0.15);
     }
 
-    .logo-text-sub {
-      font-size: 12px;
-      color: #9fb5ff;
+    .card h2 {
+      margin-top: 0;
+      color: var(--accent);
     }
 
-    .subject-pill {
-      margin-top: 8px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
-      border-radius: var(--radius-pill);
-      background: rgba(15,23,42,0.75);
-      font-size: 11px;
-      color: #e0f2fe;
-      border: 1px solid rgba(148, 163, 253, 0.5);
+    .card h3 {
+      color: var(--accent);
+      margin-bottom: 6px;
     }
 
-    .subject-pill span.flag {
-      font-size: 16px;
-    }
-
-    .sidebar-section-title {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #94a3ff;
-      margin-top: 8px;
-      margin-bottom: -2px;
-    }
-
-    .unit-list {
+    .examples {
       margin-top: 6px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+      padding-left: 18px;
+      color: var(--text-soft);
     }
 
-    .unit-pill {
+    .examples li {
+      margin-bottom: 4px;
+    }
+
+    .formula {
+      display: inline-block;
+      padding: 4px 8px;
       border-radius: 999px;
-      padding: 8px 12px;
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 6px;
-      background: rgba(15,23,42,0.35);
-      color: #dbeafe;
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: var(--transition-fast);
-    }
-    .unit-pill.active {
-      background: rgba(37, 99, 235, 0.95);
-      border-color: rgba(191, 219, 254, 0.7);
-      box-shadow: 0 10px 24px rgba(37,99,235,0.6);
-    }
-    .unit-pill small {
-      font-size: 11px;
-      color: #a5b4fc;
+      background: var(--accent-soft);
+      color: var(--text-main);
+      font-weight: 600;
+      margin-right: 4px;
     }
 
-    .unit-tag {
-      font-size: 11px;
-      padding: 3px 7px;
+    .exercise {
+      margin-top: 10px;
+    }
+
+    .exercise-row {
+      margin-bottom: 10px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      background: rgba(184, 216, 245, 0.3);
+    }
+
+    .exercise-row span.num {
+      font-weight: 600;
+      margin-right: 4px;
+      color: var(--accent);
+    }
+
+    select,
+    input[type="number"],
+    input[type="text"] {
       border-radius: 999px;
-      background: rgba(15,23,42,0.7);
-      color: #e0f2fe;
+      border: 1px solid rgba(74, 144, 226, 0.4);
+      padding: 4px 8px;
+      font-size: 0.95rem;
+      outline: none;
+      background: #fff;
+      margin: 0 4px;
     }
-if (progressState.totalSeconds % 60 === 0) {
-  saveSessionToSupabase('session_update');
-}
 
-    .nav-links {
+    .feedback {
+      margin-left: 6px;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .feedback.ok {
+      color: var(--ok);
+    }
+
+    .feedback.wrong {
+      color: var(--wrong);
+    }
+
+    .controls {
       margin-top: 10px;
       display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .nav-link {
-      font-size: 12px;
-      color: #c7d2fe;
-      opacity: 0.85;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 8px;
-      border-radius: 999px;
-      transition: var(--transition-fast);
-    }
-    .nav-link:hover {
-      background: rgba(15,23,42,0.6);
-      opacity: 1;
-    }
-
-    .nav-link span.icon {
-      width: 18px;
-      text-align: center;
-    }
-
-    .sidebar-footer {
-      margin-top: auto;
-      font-size: 11px;
-      color: #9ca3ff;
-      opacity: 0.85;
-    }
-
-    .family-mode-badge {
-      margin-top: 6px;
-      padding: 7px 10px;
-      border-radius: 16px;
-      background: rgba(15,23,42,0.7);
-      border: 1px solid rgba(148,163,253,0.6);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      font-size: 11px;
-      color: #e0f2fe;
-    }
-
-    .family-mode-badge span.left {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .avatar-stack {
-      display: flex;
-      align-items: center;
-    }
-    .avatar {
-      width: 20px;
-      height: 20px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #fee2e2, #fb7185);
-      border: 2px solid #020617;
-      margin-left: -6px;
-    }
-    .avatar:first-child { margin-left: 0; }
-
-    .family-switch {
-      background: rgba(15,23,42,0.9);
-      border-radius: 999px;
-      padding: 2px;
-      display: flex;
-      gap: 2px;
-    }
-    .family-switch span {
-      padding: 3px 6px;
-      border-radius: 999px;
-      cursor: default;
-    }
-    .family-switch span.active {
-      background: #22c55e;
-      color: #022c22;
-      font-weight: 600;
-    }
-
-    /* ==== ПРАВАЯ КОЛОНКА ==== */
-
-    .main {
-      padding: 22px 22px 22px 0;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      overflow: hidden;
-    }
-
-    .main-inner {
-      background: radial-gradient(circle at top right, rgba(56,189,248,0.22) 0%, rgba(15,23,42,0.4) 40%, rgba(15,23,42,0.95) 100%);
-      border-radius: 24px;
-      padding: 18px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      height: 100%;
-      overflow: hidden;
-      border: 1px solid rgba(148,163,253,0.4);
-    }
-
-    /* Верхняя панель */
-
-    .top-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
       flex-wrap: wrap;
-    }
-
-    .breadcrumbs {
-      font-size: 11px;
-      color: #a5b4fc;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-    }
-
-    .breadcrumbs span {
-      color: #e0f2fe;
-    }
-
-    .search-and-toggle {
-      display: flex;
-      align-items: center;
       gap: 10px;
-      margin-left: auto;
-      flex-wrap: wrap;
+      align-items: center;
     }
 
-    .search-box {
-      background: rgba(15,23,42,0.9);
-      border-radius: 999px;
-      padding: 6px 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border: 1px solid rgba(148,163,253,0.7);
-      min-width: 230px;
-    }
-    .search-box input {
+    button {
       border: none;
-      background: transparent;
-      color: #e5edff;
-      font-size: 13px;
-      width: 100%;
-      outline: none;
-    }
-    .search-box input::placeholder {
-      color: #64748b;
-    }
-
-    .translate-toggle {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      color: #bfdbfe;
-    }
-    .toggle {
-      width: 36px;
-      height: 20px;
       border-radius: 999px;
-      background: rgba(15,23,42,0.8);
-      border: 1px solid rgba(148,163,253,0.7);
-      display: flex;
-      align-items: center;
-      padding: 2px;
+      padding: 7px 16px;
+      font-size: 0.92rem;
       cursor: pointer;
-      position: relative;
-      transition: var(--transition-fast);
-    }
-    .toggle-thumb {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: #e5edff;
-      transform: translateX(0);
-      transition: var(--transition-fast);
-    }
-    .toggle.on {
-      background: #22c55e;
-      border-color: #4ade80;
-    }
-    .toggle.on .toggle-thumb {
-      transform: translateX(14px);
-      background: #f9fafb;
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(74, 144, 226, 0.4);
+      transition: background 0.1s ease, transform 0.1s ease;
     }
 
-    /* Прогресс */
-
-    .progress-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 4px;
+    button.secondary {
+      background: #ffffff;
+      color: var(--accent);
+      border: 1px solid rgba(74, 144, 226, 0.5);
+      box-shadow: none;
     }
 
-    .progress-main {
-      flex: 1;
-      min-width: 220px;
-      background: rgba(15,23,42,0.85);
-      border-radius: var(--radius-lg);
-      padding: 10px 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border: 1px solid rgba(148,163,253,0.5);
+    button:hover {
+      transform: translateY(-1px);
     }
 
-    .progress-circle {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: conic-gradient(from 270deg, #4ade80 var(--prog-deg), rgba(148,163,253,0.35) 0);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      color: #ecfdf5;
-      font-weight: 600;
-      box-shadow: 0 0 0 3px rgba(22,163,74,0.28);
+    .score {
+      font-size: 0.95rem;
+      color: var(--text-soft);
     }
 
-    .progress-text {
-      font-size: 11px;
-      color: #c7d2fe;
-    }
-    .progress-text strong { color: #e5edff; }
-
-    .progress-bar-wrapper {
-      flex: 1;
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(15,23,42,0.9);
-      overflow: hidden;
-    }
-    .progress-bar {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #22c55e, #4ade80, #a7f3d0);
-      transition: width var(--transition-med);
-    }
-
-    .session-info {
-      min-width: 170px;
-      background: rgba(15,23,42,0.9);
-      border-radius: var(--radius-md);
-      padding: 8px 10px;
-      font-size: 11px;
-      border: 1px solid rgba(148,163,253,0.4);
-      color: #c7d2fe;
-    }
-    .session-info strong {
-      color: #facc15;
-    }
-
-    /* Переключатели Теория / Тесты / Словарь */
-
-    .mode-tabs {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      border-radius: 999px;
-      padding: 4px;
-      background: rgba(15,23,42,0.85);
-      border: 1px solid rgba(148,163,253,0.5);
-      margin-top: 4px;
-    }
-
-    .mode-tab {
-      border-radius: 999px;
-      padding: 5px 12px;
-      font-size: 12px;
-      color: #cbd5f5;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      transition: var(--transition-fast);
-    }
-    .mode-tab span.icon { font-size: 14px; }
-    .mode-tab.active {
-      background: #eff6ff;
-      color: #1e293b;
-      font-weight: 600;
-      box-shadow: 0 10px 20px rgba(191,219,254,0.3);
-    }
-
-    /* Контент */
-
-    .content-area {
+    .answers {
       margin-top: 8px;
-      display: grid;
-      grid-template-columns: 3fr 220px;
-      gap: 14px;
-      height: calc(100% - 110px);
-    }
-
-    @media (max-width: 980px) {
-      .app {
-        grid-template-columns: 1fr;
-      }
-      .sidebar {
-        display: none;
-      }
-      .main {
-        padding: 16px;
-      }
-      .content-area {
-        grid-template-columns: 1fr;
-        height: auto;
-      }
-    }
-
-    .cards-scroll {
-      overflow: auto;
-      padding-right: 4px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .theory-card {
-      background: radial-gradient(circle at top left, rgba(59,130,246,0.18) 0, rgba(15,23,42,0.9) 40%);
-      border-radius: var(--radius-lg);
-      padding: 12px 14px 12px 14px;
-      border: 1px solid rgba(148,163,253,0.55);
-      position: relative;
-      overflow: hidden;
-      transition: var(--transition-med);
-      cursor: default;
-    }
-
-    .theory-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 40px rgba(15,23,42,0.9);
-      border-color: rgba(191,219,254,0.9);
-    }
-
-    .theory-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 6px;
-    }
-
-    .theory-title {
-      font-size: 16px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #e5edff;
-    }
-    .theory-title span.dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #38bdf8;
-      box-shadow: 0 0 12px #38bdf8;
-    }
-
-    .theory-ref {
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      background: rgba(15,23,42,0.85);
-      border: 1px solid rgba(148,163,253,0.7);
-      color: #bfdbfe;
-    }
-
-    .theory-text {
-      font-size: 13px;
-      line-height: 1.45;
-      color: #e2e8f0;
-      margin-bottom: 6px;
-    }
-
-    .theory-text .highlight {
-      color: #facc15;
-      font-weight: 600;
-    }
-
-    .translation {
-      font-size: 13px;
-      line-height: 1.4;
-      color: #cbd5f5;
-      margin-top: 4px;
-      border-top: 1px dashed rgba(148,163,253,0.5);
-      padding-top: 4px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px dashed rgba(74, 144, 226, 0.5);
       display: none;
+      font-size: 0.95rem;
+      color: var(--text-soft);
     }
 
-    .chip-row {
-      margin-top: 6px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
+    .answers b {
+      color: var(--text-main);
     }
 
-    .chip {
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(15,23,42,0.8);
-      color: #e0f2fe;
-      border: 1px solid rgba(148,163,253,0.6);
-      cursor: pointer;
-      transition: var(--transition-fast);
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.6rem;
+      }
     }
-    .chip:hover {
-      background: #eff6ff;
-      color: #1e293b;
-    }
-
-    .badge-math {
-      font-size: 10px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: rgba(15,23,42,0.8);
-      color: #91f0ff;
-      border: 1px solid rgba(45,212,191,0.7);
-      margin-left: 4px;
-    }
-
-    /* Правая колонка – тесты и словарь */
-
-    .right-panel {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .panel-card {
-      background: rgba(15,23,42,0.95);
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(148,163,253,0.6);
-      padding: 10px;
-    }
-
-    .panel-title {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 4px;
-      color: #e5edff;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .panel-title span.icon { font-size: 15px; }
-
-    .mini-text {
-      font-size: 11px;
-      color: #cbd5f5;
-      margin-bottom: 6px;
-    }
-
-    .test-question {
-      font-size: 12px;
-      color: #e5edff;
-      margin-bottom: 6px;
-    }
-
-    .test-options {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      margin-bottom: 4px;
-    }
-
-    .test-option {
-      font-size: 11px;
-      padding: 5px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,253,0.7);
-      cursor: pointer;
-      color: #cbd5f5;
-      background: rgba(15,23,42,0.8);
-      transition: var(--transition-fast);
-    }
-    .test-option:hover {
-      background: rgba(59,130,246,0.7);
-      border-color: rgba(191,219,254,0.9);
-      color: #f9fafb;
-    }
-    .test-option.correct {
-      background: rgba(34,197,94,0.9);
-      border-color: #bbf7d0;
-      color: #052e16;
-    }
-    .test-option.wrong {
-      background: rgba(239,68,68,0.9);
-      border-color: #fecaca;
-      color: #fef2f2;
-    }
-
-    .test-feedback {
-      font-size: 11px;
-      min-height: 14px;
-      color: #cbd5f5;
-    }
-
-    .panel-divider {
-      border-top: 1px dashed rgba(148,163,253,0.5);
-      margin: 6px 0;
-    }
-
-    /* Словарный тренажёр */
-
-    .vocab-word {
-      font-size: 13px;
-      font-weight: 600;
-      color: #e0f2fe;
-      margin-bottom: 4px;
-    }
-    .vocab-word span.lang {
-      font-size: 10px;
-      text-transform: uppercase;
-      color: #93c5fd;
-      margin-left: 4px;
-    }
-
-    .vocab-answer {
-      width: 100%;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,253,0.7);
-      background: rgba(15,23,42,0.9);
-      padding: 5px 8px;
-      font-size: 12px;
-      color: #e5edff;
-      outline: none;
-      margin-bottom: 4px;
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 4px;
-    }
-
-    .small-pill {
-      padding: 2px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,253,0.6);
-      font-size: 10px;
-      color: #bfdbfe;
-    }
-updateProgressUI();
-saveSessionToSupabase('test_answer');
-
-    .btn {
-      border-radius: 999px;
-      border: none;
-      padding: 5px 10px;
-      font-size: 11px;
-      cursor: pointer;
-      background: #38bdf8;
-      color: #0f172a;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      transition: var(--transition-fast);
-    }
-    .btn:hover {
-      background: #e0f2fe;
-    }
-    .btn.secondary {
-      background: transparent;
-      color: #bfdbfe;
-      border: 1px solid rgba(148,163,253,0.7);
-    }
-    .btn.secondary:hover {
-      background: rgba(15,23,42,0.8);
-    }
-
-    .vocab-feedback {
-      font-size: 11px;
-      min-height: 14px;
-      color: #cbd5f5;
-      margin-top: 2px;
-    }
-
-    /* Состояния режимов */
-
-    .mode-tests .cards-scroll .theory-card {
-      opacity: 0.96;
-    }
-    .mode-vocab .cards-scroll .theory-card {
-      opacity: 0.92;
-    }
-
   </style>
 </head>
 <body>
-<div class="app">
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="logo-block">
-      <div class="logo-circle">F</div>
-      <div>
-        <div class="logo-text-title">Física y Química</div>
-        <div class="logo-text-sub">3.º ESO · Comunidad Valenciana</div>
-      </div>
-    </div>
+  <div class="page">
+    <header>
+      <h1>Física – Tema 7</h1>
+      <p>Ejercicios interactivos para repasar fuerzas, masa, peso y energía.</p>
+    </header>
 
-    <div class="subject-pill">
-      <span class="flag">⚛️</span>
-      <span>Tema 7 · ¿Por qué se mueven los cuerpos?</span>
-    </div>
+    <!-- TEORÍA RESUMEN -->
+    <section class="card">
+      <h2>1. Resumen rápido</h2>
+      <ul class="examples">
+        <li>La <b>fuerza</b> se mide en <b>newtons (N)</b>.</li>
+        <li><span class="formula">Peso = m · g</span> &nbsp; con g ≈ 9,8 m/s².</li>
+        <li><span class="formula">F = m · a</span> &nbsp; (segunda ley de Newton).</li>
+        <li>La <b>energía cinética</b>: <span class="formula">Ec = ½ · m · v²</span></li>
+      </ul>
+    </section>
 
-    <div class="sidebar-section-title">Unidades</div>
-    <div class="unit-list">
-      <div class="unit-pill active">
-        <div>
-          <div>Tema 7 · Fuerzas y movimiento</div>
-          <small>Leyes de Newton · Rozamiento · Aceleración</small>
+    <!-- EJERCICIO 1: elegir fórmula -->
+    <section class="card">
+      <h2>2. Ejercicio 1 – Elige la fórmula correcta</h2>
+      <p class="examples">
+        Para cada magnitud, elige la fórmula que la define.
+      </p>
+      <div class="exercise" id="exF1">
+        <div class="exercise-row">
+          <span class="num">1.</span>
+          Peso (P):
+          <select class="exF1-select" data-answer="P = m · g">
+            <option value="">— elige —</option>
+            <option value="F = m · a">F = m · a</option>
+            <option value="P = m · g">P = m · g</option>
+            <option value="Ec = ½ · m · v²">Ec = ½ · m · v²</option>
+          </select>
+          <span class="feedback"></span>
         </div>
-        <span class="unit-tag">En estudio</span>
-      </div>
-      <div class="unit-pill">
-        <div>
-          <div>Geografia 3.1</div>
-          <small>Unitat 2 · Reptes demogràfics</small>
+        <div class="exercise-row">
+          <span class="num">2.</span>
+          Fuerza (F) con masa y aceleración:
+          <select class="exF1-select" data-answer="F = m · a">
+            <option value="">— elige —</option>
+            <option value="F = m · a">F = m · a</option>
+            <option value="P = m · g">P = m · g</option>
+            <option value="Ec = ½ · m · v²">Ec = ½ · m · v²</option>
+          </select>
+          <span class="feedback"></span>
         </div>
-        <span class="unit-tag">🟣 Ir</span>
-      </div>
-    </div>
-
-    <div class="nav-links">
-      <a class="nav-link" href="index.html">
-        <span class="icon">🏠</span>
-        <span>Главное меню (если будет)</span>
-      </a>
-      <a class="nav-link" href="geografia_u2.html">
-        <span class="icon">🟣</span>
-        <span>A la Geografia · U2</span>
-      </a>
-    </div>
-
-    <div class="sidebar-footer">
-      <div class="family-mode-badge">
-        <span class="left">
-          <div class="avatar-stack">
-            <div class="avatar"></div>
-            <div class="avatar"></div>
-          </div>
-          <span>Modo families · Study</span>
-        </span>
-        <div class="family-switch">
-          <span class="active">ON</span>
-          <span>OFF</span>
-        </div>
-      </div>
-      <div style="margin-top:8px;">
-        ⏱ El pare pot veure el temps d’estudi i les respostes als tests.
-      </div>
-    </div>
-  </aside>
-
-  <!-- MAIN -->
-  <main class="main">
-    <div class="main-inner" id="main-inner">
-      <div class="top-row">
-        <div>
-          <div class="breadcrumbs">
-            FÍSICA 3 ESO · <span>Tema 7 · Forces i moviment</span>
-          </div>
-          <div style="font-size:18px;font-weight:600;color:#e5edff;margin-top:2px;">
-            ¿Por qué se mueven los cuerpos? · <span style="color:#93c5fd;">Leyes de Newton, peso y rozamiento</span>
-          </div>
-        </div>
-
-        <div class="search-and-toggle">
-          <div class="search-box">
-            <span style="font-size:14px;">🔍</span>
-            <input id="searchInput" type="text" placeholder="Buscar en el texto / Поиск по теме…" />
-          </div>
-
-          <div class="translate-toggle">
-            Показать перевод (RU)
-            <div class="toggle" id="toggleTranslate">
-              <div class="toggle-thumb"></div>
-            </div>
-          </div>
+        <div class="exercise-row">
+          <span class="num">3.</span>
+          Energía cinética (Ec):
+          <select class="exF1-select" data-answer="Ec = ½ · m · v²">
+            <option value="">— elige —</option>
+            <option value="F = m · a">F = m · a</option>
+            <option value="P = m · g">P = m · g</option>
+            <option value="Ec = ½ · m · v²">Ec = ½ · m · v²</option>
+          </select>
+          <span class="feedback"></span>
         </div>
       </div>
+      <div class="controls">
+        <button onclick="checkF1()">Comprobar</button>
+        <button class="secondary" onclick="showF1()">Mostrar respuestas</button>
+        <button class="secondary" onclick="resetF1()">Reset</button>
+        <span class="score" id="scoreF1"></span>
+      </div>
+    </section>
 
-      <div class="progress-row">
-        <div class="progress-main">
-          <div class="progress-circle" id="progressCircle">0%</div>
-          <div style="flex:1;">
-            <div class="progress-text">
-              Прогресс темы: <strong id="progressLabel">0 / 10 заданий</strong>
-            </div>
-            <div class="progress-bar-wrapper">
-              <div class="progress-bar" id="progressBar"></div>
-            </div>
-          </div>
+    <!-- EJERCICIO 2: cálculo peso -->
+    <section class="card">
+      <h2>3. Ejercicio 2 – Cálculo del peso</h2>
+      <p class="examples">
+        Usa <b>P = m · g</b> con g = 9,8 m/s². Escribe el resultado aproximado en newtons (N).
+      </p>
+      <div class="exercise" id="exF2">
+        <div class="exercise-row">
+          <span class="num">1.</span>
+          Un cuerpo de masa 10 kg tiene un peso de
+          <input type="number" class="exF2-input" data-answer="98" step="0.1" /> N (aprox.).
+          <span class="feedback"></span>
         </div>
-
-        <div class="session-info" id="sessionInfo">
-          Время занятия сегодня: <strong>0 мин</strong><br />
-          Всего по теме: <span id="totalMinutes">0 мин</span>
-        </div>
-
-        <div class="mode-tabs" id="modeTabs">
-          <div class="mode-tab active" data-mode="theory">
-            <span class="icon">📘</span> Теория
-          </div>
-          <div class="mode-tab" data-mode="tests">
-            <span class="icon">✅</span> Тесты
-          </div>
-          <div class="mode-tab" data-mode="vocab">
-            <span class="icon">🧠</span> Словарь
-          </div>
+        <div class="exercise-row">
+          <span class="num">2.</span>
+          Un cuerpo de masa 50 kg tiene un peso de
+          <input type="number" class="exF2-input" data-answer="490" step="0.1" /> N (aprox.).
+          <span class="feedback"></span>
         </div>
       </div>
+      <div class="controls">
+        <button onclick="checkF2()">Comprobar</button>
+        <button class="secondary" onclick="showF2()">Mostrar respuestas</button>
+        <button class="secondary" onclick="resetF2()">Reset</button>
+        <span class="score" id="scoreF2"></span>
+      </div>
+    </section>
 
-      <div class="content-area" id="contentArea">
-        <div class="cards-scroll" id="cardsContainer">
-          <!-- карточки теории будут добавлены скриптом -->
+    <!-- EJERCICIO 3: verdadero/falso concepto -->
+    <section class="card">
+      <h2>4. Ejercicio 3 – Verdadero o falso</h2>
+      <p class="examples">
+        Elige si la frase es verdadera o falsa.
+      </p>
+      <div class="exercise" id="exF3">
+        <div class="exercise-row">
+          <span class="num">1.</span>
+          La masa de un cuerpo cambia si vamos a la Luna.
+          <select class="exF3-select" data-answer="Falso">
+            <option value="">— elige —</option>
+            <option value="Verdadero">Verdadero</option>
+            <option value="Falso">Falso</option>
+          </select>
+          <span class="feedback"></span>
         </div>
-
-        <div class="right-panel">
-          <div class="panel-card" id="testPanel">
-            <div class="panel-title">
-              <span class="icon">🧩</span> Мини-тест
-            </div>
-            <div class="mini-text">Проверьте понимание темы. Вопросы меняются автоматически.</div>
-            <div class="test-question" id="testQuestion"></div>
-            <div class="test-options" id="testOptions"></div>
-            <div class="test-feedback" id="testFeedback"></div>
-          </div>
-
-          <div class="panel-card" id="vocabPanel">
-            <div class="panel-title">
-              <span class="icon">🧠</span> Тренажёр слов
-            </div>
-            <div class="mini-text">Испанский ↔ русский. Можно отвечать словами или просто нажать «Показать».</div>
-
-            <div class="vocab-word" id="vocabWord">
-              <!-- слово -->
-            </div>
-            <input class="vocab-answer" id="vocabAnswer" placeholder="Введите перевод…" />
-            <div class="pill-row">
-              <button class="btn" id="checkVocab">Проверить</button>
-              <button class="btn secondary" id="showVocab">Показать ответ</button>
-            </div>
-            <div class="vocab-feedback" id="vocabFeedback"></div>
-
-            <div class="panel-divider"></div>
-            <div class="mini-text">
-              Режим: <span id="vocabModeLabel">ES → RU</span><br />
-              <button class="btn secondary" id="switchVocabMode" style="margin-top:4px;">Поменять направление</button>
-            </div>
-          </div>
-
-          <div class="panel-card">
-            <div class="panel-title">
-              <span class="icon">📊</span> Формулы темы
-            </div>
-            <div class="mini-text">
-              <span class="small-pill">2ª ley de Newton</span> <br />
-              <strong style="font-size:13px;">F = m · a</strong> – сила равна произведению массы на ускорение.
-            </div>
-            <div class="mini-text">
-              <span class="small-pill">Peso</span> <br />
-              <strong style="font-size:13px;">P = m · g</strong> – вес тела, g ≈ 9,8 m/s² на Земле.
-            </div>
-            <div class="mini-text">
-              <span class="small-pill">Rozamiento</span> <br />
-              <strong style="font-size:13px;">F<sub>r</sub> = μ · N</strong> – сила трения = коэффициент · сила нормали.
-            </div>
-          </div>
+        <div class="exercise-row">
+          <span class="num">2.</span>
+          El peso de un cuerpo depende de la gravedad del lugar.
+          <select class="exF3-select" data-answer="Verdadero">
+            <option value="">— elige —</option>
+            <option value="Verdadero">Verdadero</option>
+            <option value="Falso">Falso</option>
+          </select>
+          <span class="feedback"></span>
+        </div>
+        <div class="exercise-row">
+          <span class="num">3.</span>
+          La unidad de la fuerza en el Sistema Internacional es el newton.
+          <select class="exF3-select" data-answer="Verdadero">
+            <option value="">— elige —</option>
+            <option value="Verdadero">Verdadero</option>
+            <option value="Falso">Falso</option>
+          </select>
+          <span class="feedback"></span>
         </div>
       </div>
-    </div>
-  </main>
-</div>
+      <div class="controls">
+        <button onclick="checkF3()">Comprobar</button>
+        <button class="secondary" onclick="showF3()">Mostrar respuestas</button>
+        <button class="secondary" onclick="resetF3()">Reset</button>
+        <span class="score" id="scoreF3"></span>
+      </div>
+    </section>
+  </div>
 
-<script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-<script>
-  // ====== ДАННЫЕ ТЕМЫ ======
-
-  const topics = [// ИНИЦИАЛИЗАЦИЯ SUPABASE
-const SUPABASE_URL = 'https://peynomitdenvbdtlvnuz.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'; // ваш ключ anón
-const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-async function saveSessionToSupabase(eventType = 'test_answer') {
-  try {
-    const { error } = await sb
-      .from('study_logs')
-      .insert([{
-        subject: 'fisica',
-        grade: '3eso',
-        topic: 'tema7',
-        event_type: eventType,        // 'test_answer' | 'session_update' и т.п.
-        progress_percent: Math.round((progressState.done.length / tests.length) * 100),
-        total_seconds: progressState.totalSeconds || 0,
-        meta: {
-          testIndex: currentTestIndex,
-          date: new Date().toISOString()
+  <script>
+    // EX 1
+    function checkSelectGroup(selectorClass, scoreId) {
+      const selects = document.querySelectorAll("." + selectorClass);
+      let correct = 0;
+      selects.forEach(sel => {
+        const ans = sel.dataset.answer;
+        const fb = sel.parentElement.querySelector(".feedback");
+        fb.classList.remove("ok", "wrong");
+        if (!sel.value) {
+          fb.textContent = "";
+          return;
         }
-      }]);
-
-    if (error) console.error('Supabase error:', error);
-  } catch (e) {
-    console.error('Save to Supabase failed:', e);
-  }
-}
-
-    {
-      id: 'newton1',
-      ref: '5.1 · Primera ley de Newton',
-      title: '1. Primera ley de Newton o ley de la inercia',
-      text_ca: 'Un cuerpo se mantendrá en su estado de movimiento, ya sea en reposo o a velocidad constante, si no se le obliga a cambiar por la acción de una o varias fuerzas que actúan sobre él.',
-      text_ru: 'Тело сохраняет состояние покоя или равномерного прямолинейного движения, пока на него не подействует сила, заставляющая изменить это состояние. Это и есть закон инерции.',
-      keywords: ['Inèrcia · Инерция', 'Força neta · Равнодействующая сила', 'Equilibri · Равновесие']
-    },
-    {
-      id: 'newton2',
-      ref: '5.2 · Segunda ley de Newton',
-      title: '2. Segunda ley de Newton o ley del movimiento',
-      text_ca: 'Si sobre un cuerpo actúa una fuerza neta, este adquiere una aceleración directamente proporcional a la fuerza que actúa sobre él e inversamente proporcional a la masa: F = m · a.',
-      text_ru: 'Если на тело действует равнодействующая сила, оно получает ускорение, прямо пропорциональное этой силе и обратно пропорциональное массе: F = m · a.',
-      keywords: ['Aceleració · Ускорение', 'F = m · a', 'Unitat: N (newton)']
-    },
-    {
-      id: 'newton3',
-      ref: '5.3 · Tercera ley',
-      title: '3. Tercera ley de Newton o ley de acción y reacción',
-      text_ca: 'Si un cuerpo ejerce una fuerza sobre otro, este ejerce una fuerza igual, pero en sentido contrario, sobre el primero. Ambas fuerzas forman un par acció-reacció.',
-      text_ru: 'Если одно тело действует на другое с некоторой силой, второе тело действует на первое с силой такой же величины, но противоположного направления. Эти силы называют парой действие–противодействие.',
-      keywords: ['Acció · Действие', 'Reacció · Противодействие', 'Parell de forces · Пара сил']
-    },
-    {
-      id: 'weight',
-      ref: '5.4 · Peso y gravedad',
-      title: '4. El peso y la fuerza de la gravedad',
-      text_ca: 'El peso es la fuerza con que nos atrae la gravedad de un astro o planeta. Se calcula con la ecuación P = m · g, on g és l\'acceleració de la gravetat.',
-      text_ru: 'Вес — это сила, с которой гравитация планеты притягивает тело. Вес вычисляют по формуле P = m · g, где g — ускорение свободного падения.',
-      keywords: ['Pes · Вес', 'Gravetat · Гравитация', 'P = m · g']
-    },
-    {
-      id: 'friction_basic',
-      ref: '6.1 · La fuerza de rozamiento',
-      title: '5. La fuerza de rozamiento',
-      text_ca: 'La fuerza de rozamiento se opone al movimiento de los cuerpos y aparece por el contacto entre superficies. Su dirección es la misma que la del movimiento pero en sentido contrario.',
-      text_ru: 'Сила трения противодействует движению тела и возникает при контакте поверхностей. Она направлена вдоль движения, но в противоположную сторону.',
-      keywords: ['Fricció · Трение', 'Contacte · Контакт', 'Força de rozamiento · Сила трения']
-    },
-    {
-      id: 'friction_coeff',
-      ref: '6.2 · Coeficiente de rozamiento',
-      title: '6. Coeficiente de rozamiento: estático y dinámico',
-      text_ca: 'Per quantificar el rozamiento definim el coeficiente μ. El coeficiente estàtic (μs) correspon a quan el cos està en repòs i cal una força més gran per començar a moure\'l. El coeficient dinàmic (μd) actua quan el cos ja està en moviment.',
-      text_ru: 'Чтобы количественно описать трение, вводят коэффициент μ. Статический коэффициент μs относится к состоянию покоя: чтобы сдвинуть тело, нужна большая сила. Динамический коэффициент μd действует, когда тело уже движется, и обычно он меньше.',
-      keywords: ['μs · Коэффициент статического трения', 'μd · Коэффициент динамического трения', 'F = μ · N']
-    },
-    {
-      id: 'acceleration',
-      ref: '7.1 · La aceleración de los cuerpos',
-      title: '7. Aceleración de los cuerpos en caída',
-      text_ca: 'Quan un objecte cau des d\'una altura, cada vegada baixa més ràpid: la seva velocitat augmenta cada segon. Això passa perquè actua una acceleració gairebé constant deguda a la gravetat.',
-      text_ru: 'Когда тело падает с высоты, оно движется всё быстрее: его скорость увеличивается каждую секунду. Причина — почти постоянное ускорение свободного падения.',
-      keywords: ['Aceleració · Ускорение', 'Caiguda lliure · Свободное падение', 'g ≈ 9,8 m/s²']
-    },
-    {
-      id: 'summary',
-      ref: 'Mapa conceptual · Tema 7',
-      title: '8. Resumen: mapa conceptual de fuerzas y movimiento',
-      text_ca: 'El moviment d\'un cos es descriu a partir del canvi en la seva posició al llarg del temps. Les forces expliquen per què canvia aquest moviment: les lleis de Newton relacionen força, massa i acceleració, mentre que el pes i el rozament són forces especials que actuen en moltes situacions quotidianes.',
-      text_ru: 'Движение тела описывают через изменение положения во времени. Силы объясняют, почему движение меняется: законы Ньютона связывают силу, массу и ускорение, а вес и сила трения — это особые силы, которые постоянно действуют в реальной жизни.',
-      keywords: ['Moviment · Движение', 'Forces · Силы', 'Lleis de Newton · Законы Ньютона']
-    }
-  ];
-
-  const tests = [
-    {
-      topicId: 'newton1',
-      q: 'Según la primera ley de Newton, un cuerpo mantiene su estado de movimiento si…',
-      options: [
-        'no actúa ninguna fuerza neta sobre él',
-        'su masa es muy pequeña',
-        'se mueve solo en línea recta'
-      ],
-      correct: 0,
-      explain: 'Mientras la fuerza neta sea cero, el cuerpo mantiene su estado (reposo o MRU).'
-    },
-    {
-      topicId: 'newton2',
-      q: 'En la ecuación F = m · a, si duplicamos la fuerza y mantenemos la masa, la aceleración…',
-      options: [
-        'se reduce a la mitad',
-        'se mantiene igual',
-        'se duplica'
-      ],
-      correct: 2,
-      explain: 'a = F / m, por tanto si F se duplica y m es constante, a también se duplica.'
-    },
-    {
-      topicId: 'newton3',
-      q: '¿Qué par de fuerzas es un ejemplo claro de acción y reacción?',
-      options: [
-        'El peso de un cuerpo y su rozamiento',
-        'El empuje del patinador sobre el suelo y la reacción del suelo',
-        'El peso de un cuerpo y la normal'
-      ],
-      correct: 1,
-      explain: 'El patinador empuja hacia atrás el suelo y el suelo reacciona empujándolo hacia delante.'
-    },
-    {
-      topicId: 'weight',
-      q: 'Si un objeto tiene masa de 10 kg, su peso en la Tierra (g ≈ 9,8 m/s²) es aproximadamente…',
-      options: [
-        '9,8 N',
-        '98 N',
-        '0,98 N'
-      ],
-      correct: 1,
-      explain: 'P = m · g = 10 · 9,8 ≈ 98 N.'
-    },
-    {
-      topicId: 'friction_basic',
-      q: 'La fuerza de rozamiento siempre tiene sentido…',
-      options: [
-        'igual que el movimiento',
-        'contrario al movimiento relativo entre superficies',
-        'vertical hacia abajo'
-      ],
-      correct: 1,
-      explain: 'El rozamiento se opone al deslizamiento relativo.'
-    },
-    {
-      topicId: 'friction_coeff',
-      q: 'El coeficiente de rozamiento estático μs suele ser…',
-      options: [
-        'igual al dinámico μd',
-        'mayor que el dinámico μd',
-        'menor que el dinámico μd'
-      ],
-      correct: 1,
-      explain: 'Normalmente cuesta más iniciar el movimiento que mantenerlo, por eso μs > μd.'
-    },
-    {
-      topicId: 'acceleration',
-      q: 'En caída libre (sin rozamiento), la aceleración del cuerpo…',
-      options: [
-        'aumenta con el tiempo',
-        'es aproximadamente constante e igual a g',
-        'es cero'
-      ],
-      correct: 1,
-      explain: 'En las cercanías de la superficie terrestre, g se considera constante.'
-    },
-    {
-      topicId: 'summary',
-      q: '¿Qué magnitud relaciona la segunda ley de Newton?',
-      options: [
-        'Energía, tiempo y distancia',
-        'Fuerza, masa y aceleración',
-        'Peso, volumen y densidad'
-      ],
-      correct: 1,
-      explain: 'La 2ª ley conecta fuerza resultante, masa y aceleración (F = m · a).'
-    },
-    {
-      topicId: 'summary',
-      q: 'El peso de un cuerpo es…',
-      options: [
-        'la cantidad de materia que contiene',
-        'la fuerza con que la gravedad lo atrae',
-        'su volumen en litros'
-      ],
-      correct: 1,
-      explain: 'La cantidad de materia es la masa; el peso es una fuerza.'
-    },
-    {
-      topicId: 'friction_basic',
-      q: 'Si no hubiera rozamiento, un coche que se mueve seguiría…',
-      options: [
-        'deteniéndose poco a poco',
-        'con velocidad constante mientras no actúe otra fuerza',
-        'acelerando cada vez más'
-      ],
-      correct: 1,
-      explain: 'Sin fuerzas externas (como el rozamiento), se cumple estrictamente la 1ª ley de Newton.'
-    }
-  ];
-
-  const vocab = [
-    { es: 'fuerza', ru: 'сила' },
-    { es: 'aceleración', ru: 'ускорение' },
-    { es: 'masa', ru: 'масса' },
-    { es: 'peso', ru: 'вес' },
-    { es: 'rozamiento / fricción', ru: 'трение' },
-    { es: 'coeficiente de rozamiento', ru: 'коэффициент трения' },
-    { es: 'movimiento rectilíneo uniforme (MRU)', ru: 'равномерное прямолинейное движение' },
-    { es: 'ley de la inercia', ru: 'закон инерции' },
-    { es: 'acción y reacción', ru: 'действие и противодействие' },
-    { es: 'fuerza resultante (neta)', ru: 'равнодействующая сила' }
-  ];
-
-  // ====== РЕНДЕР КАРТОЧЕК ======
-
-  const cardsContainer = document.getElementById('cardsContainer');
-  let showTranslation = false;
-
-  function renderCards(filterText = '') {
-    cardsContainer.innerHTML = '';
-    const text = filterText.trim().toLowerCase();
-
-    topics.forEach(topic => {
-      if (text) {
-        const combined = (topic.title + topic.text_ca + topic.text_ru + topic.keywords.join(' ')).toLowerCase();
-        if (!combined.includes(text)) return;
-      }
-
-      const card = document.createElement('section');
-      card.className = 'theory-card';
-      card.dataset.topicId = topic.id;
-
-      card.innerHTML = `
-        <header class="theory-header">
-          <div class="theory-title">
-            <span class="dot"></span>
-            <span>${topic.title}</span>
-          </div>
-          <div class="theory-ref">${topic.ref}</div>
-        </header>
-        <div class="theory-text">${topic.text_ca}</div>
-        <div class="translation"${showTranslation ? '' : ' style="display:none;"'}>
-          ${topic.text_ru}
-        </div>
-        <div class="chip-row">
-          ${topic.keywords.map(k => `<button class="chip" data-chip="${k}">${k}</button>`).join('')}
-        </div>
-      `;
-
-      cardsContainer.appendChild(card);
-    });
-  }
-
-  renderCards();
-
-  // ====== ПОИСК ======
-  document.getElementById('searchInput').addEventListener('input', (e) => {
-    renderCards(e.target.value);
-  });
-
-  // ====== ПЕРЕКЛЮЧАТЕЛЬ ПЕРЕВОДА ======
-  const toggleTranslate = document.getElementById('toggleTranslate');
-  toggleTranslate.addEventListener('click', () => {
-    showTranslation = !showTranslation;
-    toggleTranslate.classList.toggle('on', showTranslation);
-
-    document.querySelectorAll('.translation').forEach(el => {
-      el.style.display = showTranslation ? 'block' : 'none';
-    });
-  });
-
-  // ====== ТЕСТЫ И ПРОГРЕСС ======
-  let currentTestIndex = 0;
-  const testQuestion = document.getElementById('testQuestion');
-  const testOptions = document.getElementById('testOptions');
-  const testFeedback = document.getElementById('testFeedback');
-  const progressBar = document.getElementById('progressBar');
-  const progressCircle = document.getElementById('progressCircle');
-  const progressLabel = document.getElementById('progressLabel');
-
-  const PROGRESS_KEY = 'fisica_tema7_progress';
-  let progressState = JSON.parse(localStorage.getItem(PROGRESS_KEY) || '{}');
-  if (!progressState.done) progressState.done = [];
-
-  function saveProgress() {
-    localStorage.setItem(PROGRESS_KEY, JSON.stringify(progressState));
-  }
-
-  function updateProgressUI() {
-    const total = tests.length;
-    const done = progressState.done.length;
-    const percent = Math.round((done / total) * 100);
-
-    progressBar.style.width = percent + '%';
-    progressCircle.textContent = percent + '%';
-    progressCircle.style.setProperty('--prog-deg', percent * 3.6 + 'deg');
-    progressLabel.textContent = `${done} / ${total} заданий`;
-  }
-
-  function loadTest() {
-    if (tests.length === 0) return;
-    currentTestIndex = (currentTestIndex + tests.length) % tests.length;
-    const t = tests[currentTestIndex];
-
-    testQuestion.textContent = t.q;
-    testOptions.innerHTML = '';
-    testFeedback.textContent = '';
-
-    t.options.forEach((opt, idx) => {
-      const btn = document.createElement('button');
-      btn.className = 'test-option';
-      btn.textContent = opt;
-
-      btn.addEventListener('click', () => {
-        const already = progressState.done.includes(currentTestIndex);
-
-        if (idx === t.correct) {
-          btn.classList.add('correct');
-          testFeedback.textContent = '✅ Верно! ' + t.explain;
-          if (!already) {
-            progressState.done.push(currentTestIndex);
-            saveProgress();
-            updateProgressUI();
-          }
+        if (sel.value === ans) {
+          fb.textContent = "✓";
+          fb.classList.add("ok");
+          correct++;
         } else {
-          btn.classList.add('wrong');
-          testFeedback.textContent = '❌ Не совсем. ' + t.explain;
+          fb.textContent = "✗";
+          fb.classList.add("wrong");
         }
-
-        // блокируем остальные
-        Array.from(testOptions.children).forEach(b => b.disabled = true);
-        setTimeout(() => {
-          // следующий тест
-          currentTestIndex = (currentTestIndex + 1) % tests.length;
-          loadTest();
-        }, 1400);
       });
-
-      testOptions.appendChild(btn);
-    });
-  }
-
-  updateProgressUI();
-  loadTest();
-
-  // ====== ВРЕМЯ ЗАНЯТИЯ ======
-  const sessionInfo = document.getElementById('sessionInfo');
-  const totalMinutesSpan = document.getElementById('totalMinutes');
-
-  if (!progressState.totalSeconds) progressState.totalSeconds = 0;
-  if (!progressState.todayDate) progressState.todayDate = '';
-  if (!progressState.todaySeconds) progressState.todaySeconds = 0;
-
-  function formatMinutes(sec) {
-    const m = Math.round(sec / 60);
-    return m + ' мин';
-  }
-
-  function updateTimeUI() {
-    const todayText = formatMinutes(progressState.todaySeconds);
-    const totalText = formatMinutes(progressState.totalSeconds);
-    sessionInfo.querySelector('strong').textContent = todayText;
-    totalMinutesSpan.textContent = totalText;
-  }
-
-  updateTimeUI();
-
-  const now = new Date();
-  const todayStr = now.toISOString().slice(0,10);
-  if (progressState.todayDate !== todayStr) {
-    progressState.todayDate = todayStr;
-    progressState.todaySeconds = 0;
-    saveProgress();
-    updateTimeUI();
-  }
-
-  setInterval(() => {
-    progressState.totalSeconds += 10;
-    progressState.todaySeconds += 10;
-    saveProgress();
-    updateTimeUI();
-  }, 10000);
-
-  // ====== СЛОВАРНЫЙ ТРЕНАЖЁР ======
-  let vocabIndex = 0;
-  let vocabMode = 'es-ru'; // или 'ru-es'
-
-  const vocabWordEl = document.getElementById('vocabWord');
-  const vocabAnswerEl = document.getElementById('vocabAnswer');
-  const vocabFeedbackEl = document.getElementById('vocabFeedback');
-  const vocabModeLabel = document.getElementById('vocabModeLabel');
-
-  function loadVocab() {
-    vocabIndex = (vocabIndex + vocab.length) % vocab.length;
-    const item = vocab[vocabIndex];
-
-    if (vocabMode === 'es-ru') {
-      vocabWordEl.innerHTML = `${item.es}<span class="lang">ES</span>`;
-      vocabAnswerEl.placeholder = 'Перевод на русский…';
-    } else {
-      vocabWordEl.innerHTML = `${item.ru}<span class="lang">RU</span>`;
-      vocabAnswerEl.placeholder = 'Перевод на испанский…';
+      document.getElementById(scoreId).textContent =
+        "Correctas: " + correct + " / " + selects.length;
     }
-    vocabAnswerEl.value = '';
-    vocabFeedbackEl.textContent = '';
-  }
 
-  function checkVocab() {
-    const item = vocab[vocabIndex];
-    const user = vocabAnswerEl.value.trim().toLowerCase();
-    if (!user) {
-      vocabFeedbackEl.textContent = 'Напиши вариант ответа или нажми «Показать ответ».';
-      return;
+    function resetSelectGroup(selectorClass, scoreId) {
+      const selects = document.querySelectorAll("." + selectorClass);
+      selects.forEach(sel => {
+        sel.value = "";
+        const fb = sel.parentElement.querySelector(".feedback");
+        fb.textContent = "";
+        fb.classList.remove("ok", "wrong");
+      });
+      document.getElementById(scoreId).textContent = "";
     }
-    let correct;
-    if (vocabMode === 'es-ru') {
-      correct = item.ru.toLowerCase();
-    } else {
-      correct = item.es.toLowerCase();
+
+    function showSelectAnswers(selectorClass, scoreId) {
+      const selects = document.querySelectorAll("." + selectorClass);
+      selects.forEach(sel => { sel.value = sel.dataset.answer; });
+      checkSelectGroup(selectorClass, scoreId);
     }
-    if (correct.includes(user) || user.includes(correct)) {
-      vocabFeedbackEl.textContent = '✅ Отлично!';
-    } else {
-      vocabFeedbackEl.textContent = `ℹ️ Правильный ответ: ${correct}`;
+
+    function checkF1()  { checkSelectGroup("exF1-select", "scoreF1"); }
+    function resetF1()  { resetSelectGroup("exF1-select", "scoreF1"); }
+    function showF1()   { showSelectAnswers("exF1-select", "scoreF1"); }
+
+    function checkF3()  { checkSelectGroup("exF3-select", "scoreF3"); }
+    function resetF3()  { resetSelectGroup("exF3-select", "scoreF3"); }
+    function showF3()   { showSelectAnswers("exF3-select", "scoreF3"); }
+
+    // EX 2 (inputs)
+    function checkF2() {
+      const inputs = document.querySelectorAll(".exF2-input");
+      let correct = 0;
+      inputs.forEach(inp => {
+        const fb = inp.parentElement.querySelector(".feedback");
+        fb.classList.remove("ok", "wrong");
+        if (!inp.value) {
+          fb.textContent = "";
+          return;
+        }
+        const ans = parseFloat(inp.dataset.answer);
+        const val = parseFloat(inp.value);
+        if (Math.abs(val - ans) <= ans * 0.05) { // ±5%
+          fb.textContent = "✓";
+          fb.classList.add("ok");
+          correct++;
+        } else {
+          fb.textContent = "✗";
+          fb.classList.add("wrong");
+        }
+      });
+      document.getElementById("scoreF2").textContent =
+        "Correctas: " + correct + " / " + inputs.length;
     }
-  }
 
-  function showVocabAnswer() {
-    const item = vocab[vocabIndex];
-    vocabFeedbackEl.textContent =
-      vocabMode === 'es-ru'
-        ? `Ответ: ${item.ru}`
-        : `Respuesta: ${item.es}`;
-  }
-
-  document.getElementById('checkVocab').addEventListener('click', checkVocab);
-  document.getElementById('showVocab').addEventListener('click', showVocabAnswer);
-  document.getElementById('switchVocabMode').addEventListener('click', () => {
-    vocabMode = vocabMode === 'es-ru' ? 'ru-es' : 'es-ru';
-    vocabModeLabel.textContent = vocabMode === 'es-ru' ? 'ES → RU' : 'RU → ES';
-    loadVocab();
-  });
-
-  vocabAnswerEl.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      checkVocab();
+    function resetF2() {
+      const inputs = document.querySelectorAll(".exF2-input");
+      inputs.forEach(inp => {
+        inp.value = "";
+        const fb = inp.parentElement.querySelector(".feedback");
+        fb.textContent = "";
+        fb.classList.remove("ok", "wrong");
+      });
+      document.getElementById("scoreF2").textContent = "";
     }
-  });
 
-  loadVocab();
-
-  // ====== ПЕРЕКЛЮЧЕНИЕ РЕЖИМОВ (Теория / Тесты / Словарь) ======
-  const modeTabs = document.querySelectorAll('.mode-tab');
-  const mainInner = document.getElementById('main-inner');
-  const testPanel = document.getElementById('testPanel');
-  const vocabPanel = document.getElementById('vocabPanel');
-
-  function setMode(mode) {
-    modeTabs.forEach(tab => {
-      tab.classList.toggle('active', tab.dataset.mode === mode);
-    });
-    mainInner.classList.remove('mode-theory', 'mode-tests', 'mode-vocab');
-    mainInner.classList.add('mode-' + mode);
-
-    // Небольшой акцент: если открыт режим "Тесты" – подсветим панель тестов
-    if (mode === 'tests') {
-      testPanel.style.boxShadow = '0 0 0 1px rgba(56,189,248,0.8)';
-      vocabPanel.style.boxShadow = 'none';
-    } else if (mode === 'vocab') {
-      vocabPanel.style.boxShadow = '0 0 0 1px rgba(56,189,248,0.8)';
-      testPanel.style.boxShadow = 'none';
-    } else {
-      testPanel.style.boxShadow = 'none';
-      vocabPanel.style.boxShadow = 'none';
+    function showF2() {
+      const inputs = document.querySelectorAll(".exF2-input");
+      inputs.forEach(inp => { inp.value = inp.dataset.answer; });
+      checkF2();
     }
-  }
-
-  modeTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      setMode(tab.dataset.mode);
-    });
-  });
-
-  setMode('theory');
-
-  // клики по "чипам" – фильтр по слову
-  cardsContainer.addEventListener('click', (e) => {
-    const chip = e.target.closest('.chip');
-    if (!chip) return;
-    const word = chip.dataset.chip || '';
-    document.getElementById('searchInput').value = word.split('·')[0].trim();
-    renderCards(word.split('·')[0].trim());
-  });
-
-</script>
+  </script>
 </body>
 </html>
