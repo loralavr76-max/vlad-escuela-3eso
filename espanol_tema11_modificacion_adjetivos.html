@@ -758,6 +758,256 @@
       const box = document.getElementById("extraAnswers");
       box.style.display = box.style.display === "block" ? "none" : "block";
     }
-  </script>
-</body>
+  </script>// EX 12.4
+function check124() {
+  const inputs = document.querySelectorAll(".ex124-input");
+  let correct = 0;
+  inputs.forEach(inp => {
+    const fb = inp.parentElement.querySelector(".feedback");
+    fb.classList.remove("ok", "wrong");
+    if (!inp.value.trim()) {
+      fb.textContent = "";
+      return;
+    }
+    const ans = inp.dataset.answer.trim().toLowerCase();
+    const val = inp.value.trim().toLowerCase();
+    if (val === ans) {
+      fb.textContent = "✓";
+      fb.classList.add("ok");
+      correct++;
+    } else {
+      fb.textContent = "✗";
+      fb.classList.add("wrong");
+    }
+  });
+  document.getElementById("score124").textContent =
+    "Correctas: " + correct + " / " + inputs.length;
+}
+
+function show124() {
+  const inputs = document.querySelectorAll(".ex124-input");
+  inputs.forEach(inp => { inp.value = inp.dataset.answer; });
+  check124();
+}
+
+function reset124() {
+  const inputs = document.querySelectorAll(".ex124-input");
+  inputs.forEach(inp => {
+    inp.value = "";
+    const fb = inp.parentElement.querySelector(".feedback");
+    fb.textContent = "";
+    fb.classList.remove("ok", "wrong");
+  });
+  document.getElementById("score124").textContent = "";
+}
+
+</body><section class="card">
+  <h2>5. Ejercicio 12.4 – Completa las frases</h2>
+  <p class="exercise-intro">
+    Completa las frases con <b>todo, toda, muy, mucho o demasiado</b> y el nombre o adjetivo necesario.
+  </p>
+
+  <div class="exercise" id="ex124">
+    <div class="exercise-row">
+      <span class="num">1.</span>
+      Rodrigo está muy enfadado. Rodrigo está
+      <input type="text" class="ex124-input" data-answer="todo enfadado" placeholder="..." />
+      <span class="feedback"></span>
+    </div>
+
+    <div class="exercise-row">
+      <span class="num">2.</span>
+      En este partido hay muchas personas interesadas. En este partido hay
+      <input type="text" class="ex124-input" data-answer="mucho interesado" placeholder="..." />
+      <span class="feedback"></span>
+    </div>
+
+    <div class="exercise-row">
+      <span class="num">3.</span>
+      Es un filete enorme y yo como poco. Es
+      <input type="text" class="ex124-input" data-answer="demasiado grande" placeholder="..." />
+      para mí.
+      <span class="feedback"></span>
+    </div>
+
+    <div class="exercise-row">
+      <span class="num">4.</span>
+      Ana y Sonsoles son muy huesudas. Son
+      <input type="text" class="ex124-input" data-answer="todo huesos" placeholder="..." />
+      .
+      <span class="feedback"></span>
+    </div>
+
+    <div class="exercise-row">
+      <span class="num">5.</span>
+      En esta empresa hay muchos hombres machistas. En esta empresa hay
+      <input type="text" class="ex124-input" data-answer="mucho machista" placeholder="..." />
+      .
+      <span class="feedback"></span>
+    </div>
+
+    <div class="exercise-row">
+      <span class="num">6.</span>
+      Pablo tiene 14 años y sale con chicos. Se cree
+      <input type="text" class="ex124-input" data-answer="muy mayor" placeholder="..." />
+      .
+      <span class="feedback"></span>
+    </div>
+
+    <div class="exercise-row">
+      <span class="num">7.</span>
+      Eva y Joaquín se han comprado una casa enorme en la playa. Es
+      <input type="text" class="ex124-input" data-answer="demasiado grande" placeholder="..." />
+      para ellos.
+      <span class="feedback"></span>
+    </div>
+
+    <div class="exercise-row">
+      <span class="num">8.</span>
+      Juan ha cumplido 18 años y su padre le ha regalado una Harley Davidson. Es
+      <input type="text" class="ex124-input" data-answer="demasiada moto" placeholder="..." />
+      para él.
+      <span class="feedback"></span>
+    </div>
+
+    <div class="exercise-row">
+      <span class="num">9.</span>
+      El viento rompió la puerta. Estaba
+      <input type="text" class="ex124-input" data-answer="todo rota" placeholder="..." />
+      .
+      <span class="feedback"></span>
+    </div>
+
+    <div class="exercise-row">
+      <span class="num">10.</span>
+      Ana tiene 14 años y le gustan las muñecas. Es
+      <input type="text" class="ex124-input" data-answer="muy niña" placeholder="..." />
+      todavía.
+      <span class="feedback"></span>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button onclick="check124()">Comprobar</button>
+    <button class="secondary" onclick="show124()">Mostrar respuestas</button>
+    <button class="secondary" onclick="reset124()">Reset</button>
+    <span class="score" id="score124"></span>
+  </div>
+</section>
+<section class="card">
+  <h2>6. Ejercicio 12.5 – Completa las frases</h2>
+  <p class="exercise-intro">
+    Completa con <b>el, la, los, las + nombre + de + nombre</b>.
+  </p>
+
+  <div class="exercise" id="ex125">
+
+    <div class="exercise-row">
+      <span class="num">1.</span>
+      La comida que dan es una basura. La cobran muy caro.
+      <input type="text" class="ex125-input" data-answer="la basura de comida que dan" placeholder="..." />
+      .
+      <span class="feedback"></span>
+    </div>
+
+    <div class="exercise-row">
+      <span class="num">2.</span>
+      Paco es un caradura. Nos da siempre plantón.
+      <input type="text" class="ex125-input" data-answer="la caradura de Paco" placeholder="..." />
+      nos da siempre plantón.
+      <span class="feedback"></span>
+    </div>
+
+    <div class="exercise-row">
+      <span class="num">3.</span>
+      Este sueldo es una miseria. No se puede vivir.
+      <input type="text" class="ex125-input" data-answer="la miseria de sueldo" placeholder="..." />
+      no se puede vivir con él.
+      <span class="feedback"></span>
+    </div>
+
+    <div class="exercise-row">
+      <span class="num">4.</span>
+      Jorge es un buenazo. Nos ha prestado el chalé.
+      <input type="text" class="ex125-input" data-answer="la bondad de Jorge" placeholder="..." />
+      nos ha prestado el chalé.
+      <span class="feedback"></span>
+    </div>
+
+    <div class="exercise-row">
+      <span class="num">5.</span>
+      Tu hermano es muy pesado. No me deja en paz.
+      <input type="text" class="ex125-input" data-answer="la pesadez de tu hermano" placeholder="..." />
+      no me deja en paz.
+      <span class="feedback"></span>
+    </div>
+
+    <div class="exercise-row">
+      <span class="num">6.</span>
+      La directora es una mandona. Nos hace trabajar mucho.
+      <input type="text" class="ex125-input" data-answer="la mandonería de la directora" placeholder="..." />
+      nos hace trabajar mucho.
+      <span class="feedback"></span>
+    </div>
+
+    <div class="exercise-row">
+      <span class="num">7.</span>
+      Mis vecinas son muy antipáticas. Nunca saludan.
+      <input type="text" class="ex125-input" data-answer="la antipatía de mis vecinas" placeholder="..." />
+      nunca saludan.
+      <span class="feedback"></span>
+    </div>
+
+  </div>
+
+  <div class="controls">
+    <button onclick="check125()">Comprobar</button>
+    <button class="secondary" onclick="show125()">Mostrar respuestas</button>
+    <button class="secondary" onclick="reset125()">Reset</button>
+    <span class="score" id="score125"></span>
+  </div>
+</section>
+// EX 12.5
+function check125() {
+  const inputs = document.querySelectorAll(".ex125-input");
+  let correct = 0;
+  inputs.forEach(inp => {
+    const fb = inp.parentElement.querySelector(".feedback");
+    fb.classList.remove("ok", "wrong");
+    if (!inp.value.trim()) {
+      fb.textContent = "";
+      return;
+    }
+    const ans = inp.dataset.answer.trim().toLowerCase();
+    const val = inp.value.trim().toLowerCase();
+    if (val === ans) {
+      fb.textContent = "✓";
+      fb.classList.add("ok");
+      correct++;
+    } else {
+      fb.textContent = "✗";
+      fb.classList.add("wrong");
+    }
+  });
+  document.getElementById("score125").textContent =
+    "Correctas: " + correct + " / " + inputs.length;
+}
+
+function show125() {
+  const inputs = document.querySelectorAll(".ex125-input");
+  inputs.forEach(inp => { inp.value = inp.dataset.answer; });
+  check125();
+}
+
+function reset125() {
+  const inputs = document.querySelectorAll(".ex125-input");
+  inputs.forEach(inp => {
+    inp.value = "";
+    const fb = inp.parentElement.querySelector(".feedback");
+    fb.textContent = "";
+    fb.classList.remove("ok", "wrong");
+  });
+  document.getElementById("score125").textContent = "";
+}
+
 </html>
